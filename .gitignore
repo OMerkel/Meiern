@@ -1,0 +1,30 @@
+# C++/CMake build
+/build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.obj
+*.exe
+*.out
+*.log
+*.user
+*.vcxproj*
+*.sln
+*.pdb
+*.ilk
+*.idb
+*.dll
+*.lib
+*.a
+*.so
+*.dylib
+*.app
+*.DS_Store
+# VSCode
+.vscode/
+# Test binaries
+meiern_tests
+# Binary
+meiern
