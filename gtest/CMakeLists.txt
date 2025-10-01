@@ -13,8 +13,10 @@ add_executable(
     test_cycliclist.cpp
     test_greeting.cpp
     test_interaction.cpp
+    test_player.cpp
     ../src/Greeting.cpp
     ../src/Interaction.cpp
+    ../src/Player.cpp
 )
 
 target_include_directories(meiern_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
