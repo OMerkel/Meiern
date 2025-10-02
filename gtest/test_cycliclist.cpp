@@ -1,6 +1,16 @@
+/**
+ * @file test_cycliclist.cpp
+ * @brief Unit tests for the CyclicList class using Google Test framework.
+ *
+ * This file contains tests to verify the functionality of the CyclicList class,
+ * including push_back, size, and cyclic behavior.
+ *
+ * @author Oliver Merkel
+ * 
+ */
 #include <gtest/gtest.h>
-#include "CyclicList.h"
 #include <string>
+#include "CyclicList.h"
 
 TEST(CyclicListTest, PushBackAndSize) {
     CyclicList<int> cl;

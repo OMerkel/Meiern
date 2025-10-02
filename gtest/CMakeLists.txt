@@ -10,10 +10,18 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(
     meiern_tests
+    test_announcement.cpp
     test_cycliclist.cpp
+    test_dicecup.cpp
+    test_die.cpp
     test_greeting.cpp
     test_interaction.cpp
+    test_meierndicecup.cpp
     test_player.cpp
+    ../src/Announcement.cpp
+    ../src/DiceCup.cpp
+    ../src/Die.cpp
+    ../src/MeiernDiceCup.cpp
     ../src/Greeting.cpp
     ../src/Interaction.cpp
     ../src/Player.cpp

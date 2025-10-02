@@ -1,4 +1,15 @@
+/**
+ * @file test_player.cpp
+ * @brief Unit tests for the Player class using Google Test framework.
+ *
+ * This file contains tests to verify the functionality of the Player class,
+ * including constructor, getters, and other player-related methods.
+ *
+ * @author Oliver Merkel
+ * 
+ */
 #include <gtest/gtest.h>
+#include "Announcement.h"
 #include "Player.h"
 
 TEST(PlayerTest, ConstructorAndGetters) {
@@ -60,4 +71,32 @@ TEST(PlayerTest, DoubtPreviousAnnouncementOutputsCorrectly) {
     std::cout.rdbuf(old);
     EXPECT_TRUE(result);
     EXPECT_EQ(buffer.str(), "TestPlayer doubts the previous announcement!\n");
+}
+
+TEST(PlayerTest, PerformTurnWithDiceCupReturnsAnnouncedValue) {
+    Player player("TestPlayer", 3);
+    MeiernDiceCup cup;
+    player.setDiceCup(&cup);
+    Announcement result = player.performTurn(Announcement(0, 0));
+    // The result should be the value announced (which is the combined dice value)
+    EXPECT_GE(result.getEncodedValue(), 0); // Minimum possible sum for two dice
+    EXPECT_LE(result.getEncodedValue(), 20); // Maximum possible sum for two dice
+}
+
+TEST(PlayerTest, PerformTurnWithoutDiceCupReturnsZero) {
+    Player player("TestPlayer", 3);
+    Announcement result = player.performTurn(Announcement(0, 0));
+    EXPECT_EQ(result, Announcement( 0, 0));
+}
+
+TEST(PlayerTest, GetDiceCupReturnsAssignedPointer) {
+    Player player("TestPlayer", 3);
+    MeiernDiceCup diceCup;
+    player.setDiceCup(&diceCup);
+    EXPECT_EQ(player.getDiceCup(), &diceCup);
+}
+
+TEST(PlayerTest, GetDiceCupReturnsNullIfNotAssigned) {
+    Player player("TestPlayer", 3);
+    EXPECT_EQ(player.getDiceCup(), nullptr);
 }

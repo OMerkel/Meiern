@@ -11,6 +11,7 @@ In case your Linux is supported by apt package manager:
 .../meiern$ sudo apt-get upgrade
 .../meiern$ sudo apt-get install build-essential
 .../meiern$ sudo apt install cmake libgtest-dev gdb
+.../meiern$ sudo apt install gcovr
 ```
 
 ### Build and Run
@@ -68,6 +69,24 @@ Running main() from ./googletest/src/gtest_main.cc
 [==========] 8 tests from 3 test suites ran. (0 ms total)
 [  PASSED  ] 8 tests.
 .../meiern$ bin/meiern
+```
+
+For code coverage measurement CMakeLists.txt has to include some build flags to be set.
+
+``` bash
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
+```
+
+After clean building and running the tests the coverage tooling must execute
+
+``` bash
+gcovr -r . --object-directory build/
+```
+
+Generating the report in HTML format:
+
+``` bash
+gcovr -r . --object-directory build/ --html --html-details -o coverage.html
 ```
 
 ### Debug in VSCode / WSL

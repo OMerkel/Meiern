@@ -20,17 +20,21 @@ void Game::runLoop() {
     static std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(1, 2);
 
+	Announcement previousAnnouncement = Announcement(0, 0); // No previous announcement
     while (isRunning) {
         displayCurrentPlayers();
-		int announced_value = dist(gen);
-		currentPlayer->announceValue(announced_value);
+		// int announced_value = dist(gen);
+		Announcement announcement = currentPlayer->performTurn(previousAnnouncement);
 		bool trust_announcement = (dist(gen) == 1);
 		Interaction::output("Does " + playerList.next(currentPlayer)->getName() +
 		                    " trust the announcement? " +
 			                std::string(trust_announcement ? "Yes" : "No"));
 		if (trust_announcement) {
 			playerList.next(currentPlayer)->trustPreviousAnnouncement();
+			MeiernDiceCup* cup = currentPlayer->getDiceCup();
+			previousAnnouncement = announcement;
 			currentPlayer = playerList.next(currentPlayer);
+			currentPlayer->setDiceCup(cup);
 		}
 		else {
 			playerList.next(currentPlayer)->doubtPreviousAnnouncement();
@@ -54,7 +58,10 @@ void Game::runLoop() {
                     isRunning = false;
                 }
 			}
+			MeiernDiceCup* cup = currentPlayer->getDiceCup();
+			previousAnnouncement = Announcement(0, 0); // Reset previous announcement
 			currentPlayer = next_player;
+			currentPlayer->setDiceCup(cup);
 		}
 	}
 	Interaction::output("Winner is " + currentPlayer->getName() + " with " +
@@ -72,4 +79,5 @@ void Game::setup() {
 	Interaction::output(greeting.get_greeting());
 
     currentPlayer = playerList.begin();
+	currentPlayer->setDiceCup(new MeiernDiceCup());
 }

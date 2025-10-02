@@ -1,5 +1,4 @@
 #include "Player.h"
-#include <iostream>
 
 Player::Player(const std::string& name, int initialLives)
 	: name(name), lives(initialLives) {}
@@ -25,8 +24,24 @@ void Player::decreaseLives(int amount) {
 	if (lives < 0) lives = 0;
 }
 
-void Player::announceValue(int value) {
-	std::cout << name << " announces value: " << value << std::endl;
+int Player::announceValue(int diceValue) {
+	std::cout << name << " announces value: " << diceValue << std::endl;
+	return diceValue;
+}
+
+Announcement Player::performTurn(Announcement previousAnnouncement) {
+	if (diceCup) {
+		Announcement diceValue = diceCup->shake();
+		if (previousAnnouncement.getValue() != 0)
+			std::cout << "Previous announcement was: " << previousAnnouncement.getValue() << std::endl;
+		else
+			std::cout << "No previous announcement." << std::endl;
+		std::cout << "(" << name << " rolled: " << diceValue.getValue() << ")" << std::endl;
+		std::cout << name << " announces: " << diceValue.getValue() << std::endl;
+		return diceValue;
+	}
+	std::cerr << "Error: No dice cup assigned to player " << name << std::endl;
+	return Announcement(0, 0); // Error case
 }
 
 bool Player::trustPreviousAnnouncement() {
@@ -39,4 +54,12 @@ bool Player::doubtPreviousAnnouncement() {
 	// Placeholder logic
 	std::cout << name << " doubts the previous announcement!" << std::endl;
 	return true;
+}
+
+void Player::setDiceCup(MeiernDiceCup* cup) {
+	diceCup = cup;
+}
+
+MeiernDiceCup* Player::getDiceCup() const {
+	return diceCup;
 }

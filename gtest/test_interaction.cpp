@@ -1,3 +1,13 @@
+/**
+ * @file test_interaction.cpp
+ * @brief Unit tests for the Interaction class using Google Test framework.
+ *
+ * This file contains tests to verify the functionality of the Interaction class,
+ * including ask_name, output, and other interaction-related methods.
+ *
+ * @author Oliver Merkel
+ * 
+ */
 #include <gtest/gtest.h>
 #include "Interaction.h"
 
