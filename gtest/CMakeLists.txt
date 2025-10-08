@@ -14,6 +14,7 @@ add_executable(
     test_cycliclist.cpp
     test_dicecup.cpp
     test_die.cpp
+    test_game.cpp
     test_greeting.cpp
     test_interaction.cpp
     test_meierndicecup.cpp
@@ -21,9 +22,10 @@ add_executable(
     ../src/Announcement.cpp
     ../src/DiceCup.cpp
     ../src/Die.cpp
-    ../src/MeiernDiceCup.cpp
+    ../src/Game.cpp
     ../src/Greeting.cpp
     ../src/Interaction.cpp
+    ../src/MeiernDiceCup.cpp
     ../src/Player.cpp
 )
 

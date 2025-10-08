@@ -12,6 +12,7 @@ public:
 
     void push_back(const T& value) { data_.push_back(value); }
     void push_front(const T& value) { data_.push_front(value); }
+    void clear() { data_.clear(); }
     bool empty() const { return data_.empty(); }
     iterator erase(const_iterator it) { return data_.erase(it); }
     size_t size() const { return data_.size(); }

@@ -16,6 +16,7 @@ private:
 public:
 	Game();
     void displayCurrentPlayers();
-    void runLoop();
-    void setup();
+    void handoverDiceCup( CyclicList<Player>::iterator nextPlayer);
+    std::string runLoop();
+    void setup(std::string playerName = "");
 };
