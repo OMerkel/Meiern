@@ -15,62 +15,111 @@ void Game::displayCurrentPlayers() {
         playerList.next(currentPlayer)->getName());
 }
 
-void Game::runLoop() {
+void Game::handoverDiceCup( CyclicList<Player>::iterator nextPlayer ) {
+	MeiernDiceCup* cup = currentPlayer->getDiceCup();
+	nextPlayer->setDiceCup(cup);
+}
+
+std::string Game::runLoop() {
     static std::random_device rd;
     static std::mt19937 gen(rd());
     std::uniform_int_distribution<> dist(1, 2);
 
+	const Announcement MEIER = Announcement(2, 1);
+	const Announcement INVALID = Announcement(0, 0);
 	Announcement previousAnnouncement = Announcement(0, 0); // No previous announcement
     while (isRunning) {
         displayCurrentPlayers();
 		// int announced_value = dist(gen);
 		Announcement announcement = currentPlayer->performTurn(previousAnnouncement);
+        if (announcement == MEIER) {
+			if (currentPlayer->getDiceCup()->getDiceValue() == MEIER) {
+				Interaction::output("Indeed! " + currentPlayer->getName() +
+				    " reveals MEIER in the dice cup!");
+			}
+			else {
+				Interaction::output("Error: Current player " +
+				                    currentPlayer->getName() +
+				                    " announced MEIER but did not roll it!");
+				bool alive = currentPlayer->decreaseLives();
+				if (!alive) {
+					auto nextPlayer = playerList.next(currentPlayer);
+					playerList.erase(currentPlayer);
+					currentPlayer = nextPlayer;
+				}
+				if (playerList.size() == 1) {
+					isRunning = false;
+					continue;
+				}
+				previousAnnouncement = Announcement(0, 0); // Reset previous announcement
+				continue;
+			}
+			auto nextPlayer = playerList.next(currentPlayer);
+			bool alive = nextPlayer->decreaseLives();
+			if (!alive) {
+				playerList.erase(nextPlayer);
+				if (playerList.size() == 1) {
+					isRunning = false;
+					break;
+				}
+			}
+			previousAnnouncement = Announcement(0, 0); // Reset previous announcement
+			continue;
+		}
+		if (announcement == INVALID) {
+			Interaction::output("Error: Invalid announcement. Same player should try again.");
+			continue;
+		}
 		bool trust_announcement = (dist(gen) == 1);
 		Interaction::output("Does " + playerList.next(currentPlayer)->getName() +
 		                    " trust the announcement? " +
 			                std::string(trust_announcement ? "Yes" : "No"));
 		if (trust_announcement) {
 			playerList.next(currentPlayer)->trustPreviousAnnouncement();
-			MeiernDiceCup* cup = currentPlayer->getDiceCup();
-			previousAnnouncement = announcement;
+			handoverDiceCup(playerList.next(currentPlayer));
 			currentPlayer = playerList.next(currentPlayer);
-			currentPlayer->setDiceCup(cup);
+			previousAnnouncement = announcement;
 		}
 		else {
 			playerList.next(currentPlayer)->doubtPreviousAnnouncement();
 			// Randomly decide either current or next player looses a life
 			bool reduce_current = (dist(gen) == 1);
-			auto to_reduce_life = reduce_current ? currentPlayer :
-			    playerList.next(currentPlayer);
-			auto next_player = to_reduce_life->getLives()>1 ? to_reduce_life :
-			    (reduce_current && to_reduce_life->getLives()==1 ?
-				playerList.next(currentPlayer) : currentPlayer);
-			Interaction::output("Reducing lives of player " +
-				                to_reduce_life->getName());
-			to_reduce_life->decreaseLives();
-			Interaction::output(to_reduce_life->getName() + " now has " +
-			                    to_reduce_life->getLivesAsString() + " left.");
-			if(to_reduce_life->getLives() <= 0) {
-				Interaction::output(to_reduce_life->getName() +
-				                    " has to leave the game!");
-				playerList.erase(to_reduce_life);
-				if (playerList.size() == 1) {
-                    isRunning = false;
-                }
+			auto next_player = playerList.next(currentPlayer);
+			if (reduce_current) {
+			    bool alive = currentPlayer->decreaseLives();
+				handoverDiceCup(next_player);
+				if (!alive) {
+					playerList.erase(currentPlayer);
+				}
+				currentPlayer = next_player;
 			}
-			MeiernDiceCup* cup = currentPlayer->getDiceCup();
+			else {
+				bool alive = next_player->decreaseLives();
+				if (!alive) {
+					playerList.erase(next_player);
+					next_player = playerList.next(currentPlayer);
+				}
+				handoverDiceCup(next_player);
+				currentPlayer = next_player;
+			}
+			if (playerList.size() == 1) {
+				isRunning = false;
+				continue;
+			}
 			previousAnnouncement = Announcement(0, 0); // Reset previous announcement
-			currentPlayer = next_player;
-			currentPlayer->setDiceCup(cup);
 		}
 	}
-	Interaction::output("Winner is " + currentPlayer->getName() + " with " +
-                        currentPlayer->getLivesAsString() + " left.");
+	std::string winnerMessage = "Congratulations! Winner of the game is " +
+		currentPlayer->getName() + " with " +
+        currentPlayer->getLivesAsString() + " left.";
+	Interaction::output(winnerMessage);
+	return winnerMessage;
 }
 
-void Game::setup() {
+void Game::setup(std::string playerName) {
     isRunning = true;
-    std::string name = Interaction::ask_name();
+	playerList.clear();
+	std::string name = playerName.empty() ? Interaction::ask_name() : playerName;
     playerList.push_back(Player("Alice", 3));
     playerList.push_back(Player("Bob", 3));
     playerList.push_back(Player("Charlie", 3));

@@ -17,8 +17,14 @@ In case your Linux is supported by apt package manager:
 ### Build and Run
 
 ``` bash
-.../meiern$ cmake CMakeLists.txt
-.../meiern$ cmake --build .
+.../meiern$ cmake .
+.../meiern$ cmake --build . -v
+```
+
+Enforcing a specific compiler (here clang++ / clang).
+
+``` bash
+.../meiern$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DCMAKE_C_COMPILER=/usr/bin/clang .
 ```
 
 To explicitely build with debug symbols:

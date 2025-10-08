@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "MeiernDiceCup.h"
 #include "Announcement.h"
+#include "Interaction.h"
+#include "MeiernDiceCup.h"
 
 class Player {
 private:
@@ -16,7 +17,7 @@ public:
 	int getLives() const;
 	std::string getLivesAsString() const;
 	void increaseLives(int amount = 1);
-	void decreaseLives(int amount = 1);
+	bool decreaseLives(int amount = 1);
 
 	// Dice cup management
 	void setDiceCup(MeiernDiceCup* cup);
