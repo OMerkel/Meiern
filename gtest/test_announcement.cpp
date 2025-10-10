@@ -59,3 +59,112 @@ TEST(AnnouncementTest, Equality) {
     Announcement a2(2, 5);
     EXPECT_EQ(a1, a2);
 }
+
+TEST(AnnouncementTest, Inequality) {
+    Announcement a1(5, 2);
+    Announcement a2(3, 4);
+    EXPECT_NE(a1, a2);
+}
+
+TEST(AnnouncementTest, LessThanOperator) {
+    Announcement a1(3, 1); // 31
+    Announcement a2(3, 2); // 32
+    EXPECT_LT(a1, a2);
+}
+
+TEST(AnnouncementTest, LessThanOrEqualOperator) {
+    Announcement a1(4, 4); // 44
+    Announcement a2(4, 4); // 44
+    Announcement a3(5, 1); // 51
+    EXPECT_LE(a1, a2);
+    EXPECT_LE(a3, a1);
+}
+
+TEST(AnnouncementTest, GreaterThanOperator) {
+    Announcement a1(5, 5); // 55
+    Announcement a2(5, 4); // 54
+    EXPECT_GT(a1, a2);
+}
+
+TEST(AnnouncementTest, GreaterThanOrEqualOperator) {
+    Announcement a1(6, 6); // 66
+    Announcement a2(6, 6); // 66
+    Announcement a3(5, 3); // 53
+    Announcement a4(2, 2); // 22
+    EXPECT_GE(a1, a2);
+    EXPECT_GE(a1, a3);
+    EXPECT_GE(a4, a3);
+}
+
+TEST(AnnouncementTest, InvalidAnnouncement) {
+    Announcement invalid(0, 0);
+    EXPECT_EQ(invalid.getValue(), 0);
+    EXPECT_EQ(invalid.getEncodedValue(), -1);
+    Announcement valid(3, 4);
+    EXPECT_LT(invalid, valid);
+    EXPECT_LE(invalid, valid);
+    EXPECT_NE(invalid, valid);
+    EXPECT_FALSE(invalid > valid);
+    EXPECT_FALSE(invalid >= valid);
+}
+
+TEST(AnnouncementTest, ComparisonWithInvalidAnnouncement) {
+    Announcement invalid(0, 0);
+    Announcement valid(2, 1); // Meier
+    EXPECT_LT(invalid, valid);
+    EXPECT_LE(invalid, valid);
+    EXPECT_NE(invalid, valid);
+    EXPECT_FALSE(invalid > valid);
+    EXPECT_FALSE(invalid >= valid);
+}
+
+TEST(AnnouncementTest, ComparisonWithItself) {
+    Announcement ann(4, 5);
+    EXPECT_EQ(ann, ann);
+    EXPECT_LE(ann, ann);
+    EXPECT_GE(ann, ann);
+    EXPECT_FALSE(ann < ann);
+    EXPECT_FALSE(ann > ann);
+}
+
+TEST(AnnouncementTest, NextHigherReturnsInvalidForHighest) {
+    Announcement highest(2, 1); // Meier is highest
+    Announcement next = highest.nextHigher();
+    EXPECT_EQ(next.getEncodedValue(), -1); // Invalid
+    EXPECT_EQ(next.getValue(), 0);
+}
+
+TEST(AnnouncementTest, NextHigherReturnsValidForNormal) {
+    Announcement ann(3, 1); // 31, lowest
+    Announcement next = ann.nextHigher();
+    EXPECT_EQ(next.getValue(), 32);
+    EXPECT_GT(next.getEncodedValue(), ann.getEncodedValue());
+}
+
+TEST(AnnouncementTest, NextHigherReturnsInvalidForInvalidAnnouncement) {
+    Announcement invalid(0, 0);
+    Announcement next = invalid.nextHigher();
+    EXPECT_EQ(next.getEncodedValue(), -1);
+    EXPECT_EQ(next.getValue(), 0);
+}
+
+TEST(AnnouncementTest, AllHigherReturnsEmptyForHighest) {
+    Announcement highest(2, 1); // Meier
+    auto higher = highest.allHigher();
+    EXPECT_TRUE(higher.empty());
+}
+
+TEST(AnnouncementTest, AllHigherReturnsEmptyForInvalidAnnouncement) {
+    Announcement invalid(0, 0);
+    auto higher = invalid.allHigher();
+    EXPECT_TRUE(higher.empty());
+}
+
+TEST(AnnouncementTest, AllHigherReturnsAllHigherAnnouncements) {
+    Announcement ann(3, 1); // 31, lowest
+    auto higher = ann.allHigher();
+    EXPECT_FALSE(higher.empty());
+    EXPECT_EQ(higher.front().getValue(), 32);
+    EXPECT_EQ(higher.back().getValue(), 21); // Meier
+    EXPECT_EQ(higher.size(), 20);
+}

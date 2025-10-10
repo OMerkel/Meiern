@@ -2,6 +2,7 @@
 #include <random>
 #include <string>
 
+#include "Announcement.h"
 #include "CyclicList.h"
 #include "Greeting.h"
 #include "Interaction.h"
@@ -12,6 +13,7 @@ private:
     bool isRunning;
     CyclicList<Player> playerList;
     CyclicList<Player>::iterator currentPlayer;
+    Announcement previousAnnouncement;
 
 public:
 	Game();
