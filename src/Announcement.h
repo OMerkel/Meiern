@@ -2,7 +2,10 @@
 #include <algorithm>
 #include <vector>
 
-/* Represents a player's announcement in the game. */
+/**
+ * @class Announcement
+ * @brief Represents a player's announcement in the game.
+ */
 class Announcement {
 private:
     int index;

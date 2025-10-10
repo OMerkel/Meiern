@@ -1,6 +1,36 @@
+/**
+ * @file Game.cpp
+ * @brief Implementation of the Game class for the Meiern dice game.
+ *
+ * This file contains the core logic for running a Meiern dice game,
+ * including player management, turn handling, dice cup handover, and
+ * game loop execution. The Game class utilizes a cyclic list
+ * of Player objects to manage turns and player elimination.
+ * The game loop processes player actions,
+ * announcements, trust/doubt decisions, and determines the winner.
+ *
+ * Main functionalities:
+ * - Displaying current players and their status.
+ * - Handling dice cup handover between players.
+ * - Running the main game loop, including announcement validation and
+ *   player elimination.
+ * - Setting up the game with initial players and dice cups.
+ *
+ * Classes used:
+ * - Game: Manages the overall game state and flow.
+ * - Player: Represents a participant in the game.
+ * - MeiernDiceCup: Represents the dice cup used in the game.
+ * - Announcement: Represents a player's announcement during their turn.
+ * - CyclicList: A cyclic container for managing player turns.
+ * - Interaction: Handles input/output operations.
+ * - Greeting: Provides greeting messages for players.
+ *
+ * @author Oliver Merkel
+ * @date 2025-10-10
+ */
 #include "Game.h"
 
-Game::Game() : isRunning(false) {}
+Game::Game() : isRunning(false), previousAnnouncement(0, 0) {}
 
 void Game::displayCurrentPlayers() {
     Interaction::output("Remaining players:");
@@ -27,7 +57,7 @@ std::string Game::runLoop() {
 
 	const Announcement MEIER = Announcement(2, 1);
 	const Announcement INVALID = Announcement(0, 0);
-	Announcement previousAnnouncement = Announcement(0, 0); // No previous announcement
+	previousAnnouncement = Announcement(0, 0); // No previous announcement
     while (isRunning) {
         displayCurrentPlayers();
 		// int announced_value = dist(gen);

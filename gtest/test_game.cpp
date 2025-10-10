@@ -1,3 +1,23 @@
+/**
+ * @file test_game.cpp
+ * @brief Unit tests for the Game class using Google Test framework.
+ *
+ * This file contains a suite of tests to verify the core functionalities of the Game class,
+ * including player setup, game loop execution, player display, and dice cup handover.
+ *
+ * Test Cases:
+ * - SetupInitializesPlayersAndCurrentPlayer: Ensures that the setup method initializes all players
+ *   and sets the current player correctly. Verifies the winner message format after running the game loop.
+ * - DisplayCurrentPlayersOutputsInfo: Checks that the displayCurrentPlayers method outputs the correct
+ *   information for all remaining players.
+ * - HandoverDiceCupAssignsDiceCup: Validates that the handoverDiceCup mechanism assigns the dice cup
+ *   to the next player without causing exceptions during the game loop.
+ * - RunLoopReturnsWinnerMessage: Confirms that the runLoop method returns a properly formatted winner message.
+ *
+ * @author Oliver Merkel
+ * @date 2025-10-10
+ */
+
 #include <gtest/gtest.h>
 #include <string>
 #include "Game.h"

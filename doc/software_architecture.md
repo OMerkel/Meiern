@@ -1,9 +1,9 @@
 
 # Meiern Software Architecture
 
-**Version:** 1.0.0  
-**Author:** OMerkel  
-**Last Update:** October 9, 2025
+**Version:** 1.0.1
+**Author:** OMerkel
+**Last Update:** October 10, 2025
 
 ---
 
@@ -50,9 +50,6 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
     - `getValue()`
     - `getEncodedValue()`
 
-- **AnnouncementVector**
-  - Container for a sequence of `Announcement` objects. Supports vector-like operations and lexicographical comparison.
-
 - **Player**
   - Represents a player in the game.
   - Attributes:
@@ -69,12 +66,112 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
 
 ---
 
-### 1.1 Class Relationships
+### 1.1 Class Relationships (UML Diagram)
 
-- `MeiernDiceCup` inherits from `DiceCup`.
-- `DiceCup` aggregates multiple `Die` objects.
-- `Player` may own a `MeiernDiceCup`.
-- `AnnouncementVector` aggregates multiple `Announcement` objects.
+``` uml
+Announcement
+  ♢ 1
+  |
+  | 1
+Game
+  | 1
+  |
+  ◆ 1
+CyclicList
+  |
+  |
+  ♢ 1..*
+Player               Die
+  |                   ♢ *
+  |                   |
+  ♢ 0,1               |                   
+MeiernDiceCup <--- DiceCup
+
+```
+
+**Legend:**
+
+- `<---` means "inherits from" (Inheritance)
+- `♢---` means "aggregates" (Aggragation)
+- `◆---` means "composes" (Composition)
+
+As an optional information each relations arrow end might show a multiplicity if applicable.
+
+---
+
+## Error Handling
+
+- Invalid dice values or announcements are handled by setting indices to `-1` and returning default/empty objects.
+- Methods like `nextHigher()` and `allHigher()` return invalid or empty results if called on the highest or invalid announcement.
+
+---
+
+## Thread Safety
+
+- The code is **not thread-safe** by default. Shared static containers (e.g., in `Announcement`) are not protected against concurrent access.
+- For multi-threaded use, mutexes or thread-local storage should be added.
+
+---
+
+## Performance Considerations
+
+- Dice rolling uses a single RNG per die or a static RNG for all dice, minimizing overhead.
+- Announcement lookup uses a static vector for fast index-based access.
+
+---
+
+## Example Game Session
+
+1. Create players and assign dice cups:
+
+  ```cpp
+  Player alice("Alice", 3);
+  MeiernDiceCup cup;
+  alice.setDiceCup(&cup);
+  ```
+
+<!-- markdownlint-disable-next-line MD029 -->
+2. Alice rolls and announces:
+
+  ```cpp
+  Announcement announcement =  alice.performTurn();
+  ```
+
+<!-- markdownlint-disable-next-line MD029 -->
+3. Bob compares with his own roll:
+
+  ```cpp
+  Announcement bobAnnouncement(5, 2);
+  if (bobAnnouncement < previousAnnouncement) {
+     // Bob's roll is lower
+  }
+  ```
+
+<!-- markdownlint-disable-next-line MD029 -->
+4. Game continues until one player is remaining.
+
+---
+
+## Test Coverage
+
+- All core classes have dedicated unit tests in `gtest/`:
+  - CyclicList, Die, DiceCup, MeiernDiceCup, Announcement, Player, Game
+- Tests cover normal, edge, and error cases for all major methods.
+- To run tests:
+  - Build with CMake
+  - Run the test executable in `bin/`
+
+---
+
+## Future Work / TODOs
+
+- Add support for custom game variants and rules.
+- Improve thread safety for concurrent games.
+- Add graphical user interface (GUI) or web frontend.
+- Refactor static containers for better encapsulation.
+- Expand documentation with more diagrams and examples.
+
+---
 
 ---
 
@@ -83,8 +180,8 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
 - **Game Flow**
   1. Each player takes a turn.
   2. The player rolls the dice (using their `MeiernDiceCup`).
-  3. The player announces a value (using the `Announcement` class).
-  4. The next player may trust or doubt the previous announcement.
+  3. The player announces a value (using the `Announcement` class) higher than previous announcement.
+  4. The next player may trust or doubt the new announcement.
   5. If doubted, the actual dice are revealed and the outcome is resolved.
   6. Lives are adjusted accordingly.
 
