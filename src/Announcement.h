@@ -47,6 +47,32 @@ public:
         index = -1; // Invalid announcement
     }
 
+    // Returns the next higher Announcement, or an invalid Announcement if at the highest
+    Announcement nextHigher() const {
+        if (index < 0 || index + 1 >= static_cast<int>(announcements.size())) {
+            return Announcement(0, 0); // Invalid
+        }
+        int nextValue = announcements[index + 1];
+        int die1 = nextValue / 10;
+        int die2 = nextValue % 10;
+        return Announcement(die1, die2);
+    }
+
+    // Returns a vector of all higher Announcements than the current one
+    std::vector<Announcement> allHigher() const {
+        std::vector<Announcement> result;
+        if (index < 0 || index + 1 >= static_cast<int>(announcements.size())) {
+            return result;
+        }
+        for (int i = index + 1; i < static_cast<int>(announcements.size()); ++i) {
+            int value = announcements[i];
+            int die1 = value / 10;
+            int die2 = value % 10;
+            result.emplace_back(die1, die2);
+        }
+        return result;
+    }
+
     const int& operator[](size_t idx) const {
         return announcements.at(idx);
     }

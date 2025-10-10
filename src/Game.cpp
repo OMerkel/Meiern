@@ -82,8 +82,10 @@ std::string Game::runLoop() {
 		}
 		else {
 			playerList.next(currentPlayer)->doubtPreviousAnnouncement();
-			// Randomly decide either current or next player looses a life
-			bool reduce_current = (dist(gen) == 1);
+			
+			// bool reduce_current = (dist(gen) == 1);
+			bool reduce_current = currentPlayer->getDiceCup()->getDiceValue() <= previousAnnouncement;
+
 			auto next_player = playerList.next(currentPlayer);
 			if (reduce_current) {
 			    bool alive = currentPlayer->decreaseLives();

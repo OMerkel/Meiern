@@ -59,6 +59,15 @@ Announcement Player::performTurn(Announcement previousAnnouncement) {
 			    " announces MEIER and claims a win of this round immediately!");
 		}
 		else {
+			if (previousAnnouncement.getValue() != 0 &&
+			    !(diceValue > previousAnnouncement)) {
+				Interaction::output(name +
+				    " cannot announce a lower or equal value than the previous announcement!");
+				Announcement cheatingAnnouncement = previousAnnouncement.nextHigher();
+				Interaction::output(name + " must announce at least: " +
+				    std::to_string(cheatingAnnouncement.getValue()));
+				diceValue = cheatingAnnouncement;
+			}
 			Interaction::output(name + " announces: " +
 				std::to_string(diceValue.getValue()));
 		}
