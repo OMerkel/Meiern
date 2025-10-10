@@ -92,7 +92,7 @@ MeiernDiceCup <--- DiceCup
 **Legend:**
 
 - `<---` means "inherits from" (Inheritance)
-- `♢---` means "aggregates" (Aggragation)
+- `♢---` means "aggregates" (Aggregation)
 - `◆---` means "composes" (Composition)
 
 As an optional information each relations arrow end might show a multiplicity if applicable.
