@@ -21,6 +21,7 @@ add_executable(meiern
     src/Game.cpp
     src/Greeting.cpp
     src/Interaction.cpp
+    src/Logger.cpp
     src/MeiernDiceCup.cpp
     src/Player.cpp
 )

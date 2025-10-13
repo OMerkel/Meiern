@@ -30,19 +30,26 @@
  */
 #include "Game.h"
 
-Game::Game() : isRunning(false), previousAnnouncement(0, 0) {}
+Game::Game() : isRunning(false), previousAnnouncement(0, 0),
+	logger(Logger::instance()) {
+	logger.enableConsole(true);
+	logger.setConsoleLevel(Logger::Level::Info);
+	logger.enableFile(true);
+	logger.setFileLevel(Logger::Level::Debug);
+	logger.setLogFile("game.log", false);
+}
 
 void Game::displayCurrentPlayers() {
-    Interaction::output("Remaining players:");
+    logger.info() << "[" << className << "] " << "Remaining players:";
     CyclicList<Player>::iterator player = currentPlayer;
     do {
-		Interaction::output("- " + player->getName() + " with " +
-        	player->getLivesAsString());
+		logger.info() << "[" << className << "] " << "- " << player->getName() << " with " <<
+        	player->getLivesAsString();
 		player=playerList.next(player);
     } while (player != currentPlayer);
-    Interaction::output("Current player: " + currentPlayer->getName());
-    Interaction::output("Next player: " +
-        playerList.next(currentPlayer)->getName());
+    logger.info() << "[" << className << "] " << "Current player: " << currentPlayer->getName();
+    logger.info() << "[" << className << "] " << "Next player: " << 
+	    playerList.next(currentPlayer)->getName();
 }
 
 void Game::handoverDiceCup( CyclicList<Player>::iterator nextPlayer ) {
@@ -64,13 +71,13 @@ std::string Game::runLoop() {
 		Announcement announcement = currentPlayer->performTurn(previousAnnouncement);
         if (announcement == MEIER) {
 			if (currentPlayer->getDiceCup()->getDiceValue() == MEIER) {
-				Interaction::output("Indeed! " + currentPlayer->getName() +
-				    " reveals MEIER in the dice cup!");
+				logger.info() << "[" << className << "] " << "Indeed! " << currentPlayer->getName() <<
+				    " reveals MEIER in the dice cup!";
 			}
 			else {
-				Interaction::output("Error: Current player " +
-				                    currentPlayer->getName() +
-				                    " announced MEIER but did not roll it!");
+				logger.info() << "[" << className << "] " << "Error: Current player " <<
+				    currentPlayer->getName() <<
+					" announced MEIER but did not roll it!";
 				bool alive = currentPlayer->decreaseLives();
 				if (!alive) {
 					auto nextPlayer = playerList.next(currentPlayer);
@@ -97,13 +104,13 @@ std::string Game::runLoop() {
 			continue;
 		}
 		if (announcement == INVALID) {
-			Interaction::output("Error: Invalid announcement. Same player should try again.");
+			logger.error() << "[" << className << "] " << "Error: Invalid announcement. " <<
+			    "Same player should try again.";
 			continue;
 		}
 		bool trust_announcement = (dist(gen) == 1);
-		Interaction::output("Does " + playerList.next(currentPlayer)->getName() +
-		                    " trust the announcement? " +
-			                std::string(trust_announcement ? "Yes" : "No"));
+		logger.info() << "[" << className << "] " << "Does " << playerList.next(currentPlayer)->getName() <<
+		    " trust the announcement? " << std::string(trust_announcement ? "Yes" : "No");
 		if (trust_announcement) {
 			playerList.next(currentPlayer)->trustPreviousAnnouncement();
 			handoverDiceCup(playerList.next(currentPlayer));
@@ -144,21 +151,21 @@ std::string Game::runLoop() {
 	std::string winnerMessage = "Congratulations! Winner of the game is " +
 		currentPlayer->getName() + " with " +
         currentPlayer->getLivesAsString() + " left.";
-	Interaction::output(winnerMessage);
-	return winnerMessage;
-}
+	logger.info() << "[" << className << "] " << winnerMessage;
+	return winnerMessage;}
 
 void Game::setup(std::string playerName) {
-    isRunning = true;
+	isRunning = true;
 	playerList.clear();
 	std::string name = playerName.empty() ? Interaction::ask_name() : playerName;
-    playerList.push_back(Player("Alice", 3));
-    playerList.push_back(Player("Bob", 3));
-    playerList.push_back(Player("Charlie", 3));
-    playerList.push_back(Player(name, 3)); // Add the user's name
+	playerList.push_back(Player("Alice", 3));
+	playerList.push_back(Player("Bob", 3));
+	playerList.push_back(Player("Charlie", 3));
+	playerList.push_back(Player(name, 3));
 	Greeting greeting(name);
-	Interaction::output(greeting.get_greeting());
+	logger.info() << "[" << className << "] " << greeting.get_greeting();
+	logger.debug() << "[" << className << "] " << greeting.get_greeting();
 
-    currentPlayer = playerList.begin();
+	currentPlayer = playerList.begin();
 	currentPlayer->setDiceCup(new MeiernDiceCup());
 }

@@ -73,8 +73,7 @@ public:
             int die2 = value % 10;
             result.emplace_back(die1, die2);
         }
-        return result;
-    }
+        return result;}
 
     const int& operator[](size_t idx) const {
         return announcements.at(idx);

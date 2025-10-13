@@ -2,11 +2,15 @@
 #include <iostream>
 #include <string>
 #include "Announcement.h"
-#include "Interaction.h"
+#include "Logger.h"
 #include "MeiernDiceCup.h"
 
 class Player {
 private:
+    Logger& logger;
+    // Get class name using RTTI
+    const std::string className = typeid(*this).name();
+
 	std::string name;
 	int lives;
 	MeiernDiceCup* diceCup = nullptr;

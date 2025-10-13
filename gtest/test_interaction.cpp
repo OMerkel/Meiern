@@ -34,21 +34,3 @@ TEST(InteractionTest, AskNameReturnsInput) {
     EXPECT_EQ(name, "Oliver");
     EXPECT_NE(output.str().find("Enter your name"), std::string::npos);
 }
-
-
-TEST(InteractionTest, OutputPrintsEmptyMessage) {
-    std::stringstream buffer;
-    std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
-    Interaction::output("");
-    std::cout.rdbuf(old);
-    EXPECT_EQ(buffer.str(), "\n");
-}
-
-
-TEST(InteractionTest, OutputPrintsMessage) {
-    std::stringstream buffer;
-    std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
-    Interaction::output("Hello, World!");
-    std::cout.rdbuf(old);
-    EXPECT_EQ(buffer.str(), "Hello, World!\n");
-}

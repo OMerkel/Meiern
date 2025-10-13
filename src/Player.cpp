@@ -21,8 +21,11 @@
  * @param name The name of the player.
  * @param initialLives The initial number of lives for the player.
  */
-Player::Player(const std::string& name, int initialLives)
-	: name(name), lives(initialLives) {}
+Player::Player(const std::string& name, int initialLives) :
+	name(name), lives(initialLives), logger(Logger::instance()) {
+	logger.info() << "[" << className << "] " << "Created player: " << name << " with " <<
+		getLivesAsString();
+}
 
 
 /**
@@ -73,12 +76,13 @@ bool Player::decreaseLives(int amount) {
 	 * @return true if the player is still alive (lives > 0),
 	 *         false if the player has no lives left.
 	 */
-	Interaction::output("Reducing lives of player " + name);
+	logger.info() << "[" << className << "] " << "Reducing lives of player " << name;
 	lives -= amount;
 	if (lives < 0) lives = 0;
-	Interaction::output(name + " now has " + getLivesAsString() + " left.");
+	logger.info() << "[" << className << "] " << name << " now has " <<
+	    getLivesAsString() << " left.";
 	if(lives <= 0) {
-		Interaction::output(name + " has to leave the game!");
+		logger.info() << "[" << className << "] " << name << " has to leave the game!";
 	}
 	return lives > 0;
 }
@@ -90,8 +94,8 @@ bool Player::decreaseLives(int amount) {
  * @return The announced dice value.
  */
 int Player::announceValue(int diceValue) {
-	Interaction::output(name + " announces value: " +
-		std::to_string(diceValue));
+	logger.info() << "[" << className << "] " << name << " announces value: " <<
+		diceValue;
 	return diceValue;
 }
 
@@ -105,35 +109,35 @@ Announcement Player::performTurn(Announcement previousAnnouncement) {
 	if (diceCup) {
 		Announcement diceValue = diceCup->shake();
 		if (previousAnnouncement.getValue() != 0) {
-			Interaction::output("Previous announcement was: " +
-				std::to_string(previousAnnouncement.getValue()));
+			logger.info() << "[" << className << "] " << "Previous announcement was: " <<
+			    previousAnnouncement.getValue();
 		}
 		else {
-			Interaction::output("No previous announcement.");
+			logger.info() << "[" << className << "] " << "No previous announcement.";
 		}
-		Interaction::output("(" + name + " rolled: " +
-			std::to_string(diceValue.getValue()) + ")");
+		logger.debug() << "[" << className << "] " << name << " rolled: " <<
+			diceValue.getValue();
 		const Announcement MEIER = Announcement(2, 1);
 		if (diceValue == MEIER) {
-			Interaction::output(name +
-			    " announces MEIER and claims a win of this round immediately!");
+			logger.info() << "[" << className << "] " << name <<
+				" announces MEIER and claims a win of this round immediately!";
 		}
 		else {
 			if (previousAnnouncement.getValue() != 0 &&
 			    !(diceValue > previousAnnouncement)) {
-				Interaction::output(name +
-				    " cannot announce a lower or equal value than the previous announcement!");
+				logger.debug() << "[" << className << "] " << name <<
+					" cannot announce a lower or equal value than the previous announcement!";
 				Announcement cheatingAnnouncement = previousAnnouncement.nextHigher();
-				Interaction::output(name + " must announce at least: " +
-				    std::to_string(cheatingAnnouncement.getValue()));
+				logger.debug() << "[" << className << "] " << name <<
+				    " must announce at least: " << cheatingAnnouncement.getValue();
 				diceValue = cheatingAnnouncement;
 			}
-			Interaction::output(name + " announces: " +
-				std::to_string(diceValue.getValue()));
+			logger.info() << "[" << className << "] " << name << " announces: " <<
+				diceValue.getValue();
 		}
 		return diceValue;
 	}
-	Interaction::output("Error: No dice cup assigned to player " + name);
+	logger.error() << "[" << className << "] " << "Error: No dice cup assigned to player " << name;
 	return Announcement(0, 0); // Error case
 }
 
@@ -144,7 +148,7 @@ Announcement Player::performTurn(Announcement previousAnnouncement) {
  */
 bool Player::trustPreviousAnnouncement() {
 	// Placeholder logic
-	Interaction::output(name + " trusts the previous announcement.");
+	logger.info() << "[" << className << "] " << name << " trusts the previous announcement.";
 	return true;
 }
 
@@ -155,7 +159,7 @@ bool Player::trustPreviousAnnouncement() {
  */
 bool Player::doubtPreviousAnnouncement() {
 	// Placeholder logic
-	Interaction::output(name + " doubts the previous announcement!");
+	logger.info() << "[" << className << "] " << name << " doubts the previous announcement!";
 	return true;
 }
 

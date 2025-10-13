@@ -50,7 +50,7 @@ TEST(PlayerTest, AnnounceValueOutputsCorrectly) {
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
     p.announceValue(42);
     std::cout.rdbuf(old);
-    EXPECT_EQ(buffer.str(), "TestPlayer announces value: 42\n");
+    EXPECT_NE(buffer.str().find("TestPlayer announces value: 42\n"), std::string::npos);
 }
 
 TEST(PlayerTest, TrustPreviousAnnouncementOutputsCorrectly) {
@@ -60,7 +60,7 @@ TEST(PlayerTest, TrustPreviousAnnouncementOutputsCorrectly) {
     bool result = p.trustPreviousAnnouncement();
     std::cout.rdbuf(old);
     EXPECT_TRUE(result);
-    EXPECT_EQ(buffer.str(), "TestPlayer trusts the previous announcement.\n");
+    EXPECT_NE(buffer.str().find("TestPlayer trusts the previous announcement.\n"), std::string::npos);
 }
 
 TEST(PlayerTest, DoubtPreviousAnnouncementOutputsCorrectly) {
@@ -70,7 +70,7 @@ TEST(PlayerTest, DoubtPreviousAnnouncementOutputsCorrectly) {
     bool result = p.doubtPreviousAnnouncement();
     std::cout.rdbuf(old);
     EXPECT_TRUE(result);
-    EXPECT_EQ(buffer.str(), "TestPlayer doubts the previous announcement!\n");
+    EXPECT_NE(buffer.str().find("TestPlayer doubts the previous announcement!\n"), std::string::npos);
 }
 
 TEST(PlayerTest, PerformTurnWithDiceCupReturnsAnnouncedValue) {

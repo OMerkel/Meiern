@@ -20,12 +20,14 @@ add_executable(
     test_interaction.cpp
     test_meierndicecup.cpp
     test_player.cpp
+    test_logger.cpp
     ../src/Announcement.cpp
     ../src/DiceCup.cpp
     ../src/Die.cpp
     ../src/Game.cpp
     ../src/Greeting.cpp
     ../src/Interaction.cpp
+    ../src/Logger.cpp
     ../src/MeiernDiceCup.cpp
     ../src/Player.cpp
 )

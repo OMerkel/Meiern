@@ -14,15 +14,6 @@
 
 
 /**
- * @brief Outputs a message to the console.
- * @param message The message to be displayed.
- */
-void Interaction::output(const std::string& message) {
-    std::cout << message << std::endl;
-}
-
-
-/**
  * @brief Prompts the user to enter their name.
  * @return The name entered by the user as a std::string.
  */
@@ -30,5 +21,4 @@ std::string Interaction::ask_name() {
     std::cout << "Enter your name: ";
     std::string name;
     std::getline(std::cin, name);
-    return name;
-}
+    return name;}
