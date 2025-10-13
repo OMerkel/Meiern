@@ -3,6 +3,7 @@ project(meiern_tests LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -O0 -g")
 
 # GoogleTest
 find_package(GTest REQUIRED)
@@ -36,3 +37,6 @@ target_link_libraries(meiern_tests PRIVATE GTest::gtest_main)
 set_target_properties(meiern_tests PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
+
+include(GoogleTest)
+gtest_discover_tests(meiern_tests)

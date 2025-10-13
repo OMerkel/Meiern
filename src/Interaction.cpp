@@ -11,8 +11,15 @@
  * @date 2025-10-10
  */
 #include "Interaction.h"
-#include <iostream>
-#include <string>
+
+
+/**
+ * @brief Outputs a message to the console.
+ * @param message The message to be displayed.
+ */
+void Interaction::output(const std::string& message) {
+    std::cout << message << std::endl;
+}
 
 
 /**
@@ -24,13 +31,4 @@ std::string Interaction::ask_name() {
     std::string name;
     std::getline(std::cin, name);
     return name;
-}
-
-
-/**
- * @brief Outputs a message to the console.
- * @param message The message to be displayed.
- */
-void Interaction::output(const std::string& message) {
-    std::cout << message << std::endl;
 }
