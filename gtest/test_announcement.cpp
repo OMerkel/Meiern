@@ -168,3 +168,31 @@ TEST(AnnouncementTest, AllHigherReturnsAllHigherAnnouncements) {
     EXPECT_EQ(higher.back().getValue(), 21); // Meier
     EXPECT_EQ(higher.size(), 20);
 }
+
+TEST(AnnouncementTest, AllHigherReturnsNonEmpty) {
+    Announcement a(3, 1); // Not the highest
+    auto higher = a.allHigher();
+    EXPECT_FALSE(higher.empty());
+    // Optionally, check contents
+    EXPECT_EQ(higher.front().getValue(), 32);
+}
+
+TEST(AnnouncementTest, ClearAnnouncements) {
+    Announcement ann(3, 4);
+    ann.clear();
+    Announcement newAnn(5, 6); // Should reinitialize announcements
+    EXPECT_EQ(newAnn.getValue(), 65);
+}
+
+TEST(AnnouncementTest, IndexOutOfBoundsAccess) {
+    Announcement ann(3, 4);
+    EXPECT_THROW(ann[100], std::out_of_range);
+}
+
+TEST(AnnouncementTest, ValidIndexAccess) {
+    Announcement ann(3, 4);
+    EXPECT_NO_THROW({
+        int val = ann[0]; // Should be 31
+        EXPECT_EQ(val, 31);
+    });
+}

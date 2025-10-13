@@ -77,6 +77,12 @@ Running main() from ./googletest/src/gtest_main.cc
 .../meiern$ bin/meiern
 ```
 
+Alternatively use ctest
+
+``` bash
+ctest --test-dir build --output-on-failure
+```
+
 For code coverage measurement CMakeLists.txt has to include some build flags to be set.
 
 ``` bash
