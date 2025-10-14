@@ -1,9 +1,9 @@
 
 # Meiern Software Architecture
 
-**Version:** 1.0.1
+**Version:** 1.0.2
 **Author:** OMerkel
-**Last Update:** October 10, 2025
+**Last Update:** October 13, 2025
 
 ---
 
@@ -63,6 +63,26 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
     - `trustPreviousAnnouncement()`
     - `doubtPreviousAnnouncement()`
     - `performTurn()`
+
+- **Logger**
+  - Provides thread-safe, singleton-based logging to console and/or file.
+  - Attributes:
+    - `static std::ofstream file_`: Shared log file stream
+    - `bool consoleEnabled_`, `bool fileEnabled_`: Sink control
+    - `std::atomic<Level> consoleLevel_`, `fileLevel_`: Per-sink log levels
+  - Methods:
+    - `Logger::instance()`: Singleton accessor
+    - `enableConsole(bool)`, `enableFile(bool)`: Enable/disable sinks
+    - `setLogFile(path, append)`: Set log file
+    - `setConsoleLevel(Level)`, `setFileLevel(Level)`, `setAllLevels(Level)`: Log level control
+    - `trace()`, `debug()`, `info()`, `warn()`, `error()`, `critical()`: Stream-style logging
+    - RAII `LogStream` proxy for safe, move-only log emission
+  - Design:
+    - Private constructor, deleted copy/move semantics
+    - All logging uses `Logger::instance()`
+    - Logging is disabled if no sink is enabled
+    - File and console output can be independently controlled
+    - Fully covered by dedicated unit tests
 
 ---
 
@@ -154,9 +174,16 @@ As an optional information each relations arrow end might show a multiplicity if
 
 ## Test Coverage
 
-- All core classes have dedicated unit tests in `gtest/`:
-  - CyclicList, Die, DiceCup, MeiernDiceCup, Announcement, Player, Game
-- Tests cover normal, edge, and error cases for all major methods.
+- All core classes, including `Logger`, have dedicated unit tests in `gtest/`:
+  - CyclicList, Die, DiceCup, MeiernDiceCup, Announcement, Player, Game, Logger
+- Logger tests cover:
+  - Console and file sink enable/disable
+  - Log file setup, invalid file handling
+  - All log levels and stream entry points
+  - RAII and move semantics for `LogStream`
+  - Disabled logging (no sink enabled)
+  - Manipulators and flush
+- All lines in Logger are covered, including error and edge cases.
 - To run tests:
   - Build with CMake
   - Run the test executable in `bin/`
