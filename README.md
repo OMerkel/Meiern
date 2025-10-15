@@ -10,7 +10,7 @@ In case your Linux is supported by apt package manager:
 .../meiern$ sudo apt-get update
 .../meiern$ sudo apt-get upgrade
 .../meiern$ sudo apt-get install build-essential
-.../meiern$ sudo apt install cmake libgtest-dev gdb
+.../meiern$ sudo apt install cmake libgtest-dev gdb ninja-build
 .../meiern$ sudo apt install gcovr
 ```
 
@@ -37,6 +37,13 @@ To explicitely build release type:
 
 ``` bash
 .../meiern$ cmake -DCMAKE_BUILD_TYPE=Release 
+```
+
+Even more sophisticated alternative:
+
+``` bash
+.../meiern$ /usr/bin/cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ --no-warn-unused-cli -S ~/github/Meiern -B ~/github/Meiern/build -G Ninja
+.../meiern$ /usr/bin/cmake --build ~/github/Meiern/build --config Debug --target all --
 ```
 
 To run tests and then run the binary:
@@ -92,7 +99,42 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
 After clean building and running the tests the coverage tooling must execute
 
 ``` bash
-gcovr -r . --object-directory build/
+.../meiern$ gcovr -r . --object-directory build/
+(WARNING) relative referencing in --object-directory.
+        this could cause strange errors when gcovr attempts to
+        identify the original gcc working directory.
+------------------------------------------------------------------------------
+                           GCC Code Coverage Report
+Directory: .
+------------------------------------------------------------------------------
+File                                       Lines    Exec  Cover   Missing
+------------------------------------------------------------------------------
+gtest/test_announcement.cpp                  156     156   100%   
+gtest/test_cycliclist.cpp                     52      52   100%   
+gtest/test_dicecup.cpp                        45      45   100%   
+gtest/test_die.cpp                            23      23   100%   
+gtest/test_game.cpp                           38      38   100%   
+gtest/test_greeting.cpp                        8       8   100%   
+gtest/test_interaction.cpp                    11      11   100%   
+gtest/test_logger.cpp                        205     205   100%   
+gtest/test_meierndicecup.cpp                  21      21   100%   
+gtest/test_player.cpp                         77      77   100%   
+src/Announcement.h                            65      65   100%   
+src/CyclicList.h                              14      14   100%   
+src/DiceCup.cpp                               21      21   100%   
+src/Die.cpp                                    9       9   100%   
+src/Game.cpp                                 114     110    96%   88,107-109
+src/Greeting.cpp                               3       3   100%   
+src/Interaction.cpp                            5       5   100%   
+src/Logger.cpp                                34      34   100%   
+src/Logger.h                                  60      60   100%   
+src/MeiernDiceCup.cpp                          9       9   100%   
+src/MeiernDiceCup.h                            1       1   100%   
+src/Player.cpp                                64      64   100%   
+src/meiern_main.cpp                            6       6   100%   
+------------------------------------------------------------------------------
+TOTAL                                       1041    1037    99%
+------------------------------------------------------------------------------
 ```
 
 Generating the report in HTML format:

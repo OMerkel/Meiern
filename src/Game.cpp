@@ -122,6 +122,9 @@ std::string Game::runLoop() {
 			
 			// bool reduce_current = (dist(gen) == 1);
 			bool reduce_current = currentPlayer->getDiceCup()->getDiceValue() <= previousAnnouncement;
+			logger.info() << "[" << className << "] " << "Revealing dice cup of " <<
+			    currentPlayer->getName() << " which shows: " <<
+			    currentPlayer->getDiceCup()->getDiceValue().getValue();
 
 			auto next_player = playerList.next(currentPlayer);
 			if (reduce_current) {

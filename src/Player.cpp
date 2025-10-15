@@ -106,39 +106,61 @@ int Player::announceValue(int diceValue) {
  * @return The new announcement made by the player.
  */
 Announcement Player::performTurn(Announcement previousAnnouncement) {
-	if (diceCup) {
-		Announcement diceValue = diceCup->shake();
-		if (previousAnnouncement.getValue() != 0) {
-			logger.info() << "[" << className << "] " << "Previous announcement was: " <<
-			    previousAnnouncement.getValue();
-		}
-		else {
-			logger.info() << "[" << className << "] " << "No previous announcement.";
-		}
-		logger.debug() << "[" << className << "] " << name << " rolled: " <<
-			diceValue.getValue();
-		const Announcement MEIER = Announcement(2, 1);
-		if (diceValue == MEIER) {
-			logger.info() << "[" << className << "] " << name <<
-				" announces MEIER and claims a win of this round immediately!";
-		}
-		else {
-			if (previousAnnouncement.getValue() != 0 &&
-			    !(diceValue > previousAnnouncement)) {
-				logger.debug() << "[" << className << "] " << name <<
-					" cannot announce a lower or equal value than the previous announcement!";
-				Announcement cheatingAnnouncement = previousAnnouncement.nextHigher();
-				logger.debug() << "[" << className << "] " << name <<
-				    " must announce at least: " << cheatingAnnouncement.getValue();
-				diceValue = cheatingAnnouncement;
-			}
-			logger.info() << "[" << className << "] " << name << " announces: " <<
-				diceValue.getValue();
-		}
-		return diceValue;
+	if (!diceCup) {
+		logger.error() << "[" << className << "] " << "Error: No dice cup assigned to player " << name;
+		return Announcement(0, 0); // Error case
 	}
-	logger.error() << "[" << className << "] " << "Error: No dice cup assigned to player " << name;
-	return Announcement(0, 0); // Error case
+	if (previousAnnouncement.getValue() != 0) {
+		logger.info() << "[" << className << "] " << "Previous announcement was: " <<
+			previousAnnouncement.getValue();
+	}
+	else {
+		logger.info() << "[" << className << "] " << "No previous announcement.";
+	}
+
+	Announcement diceValue = diceCup->shake();
+	logger.debug() << "[" << className << "] " << name << " rolled: " <<
+		diceValue.getValue();
+	const Announcement MEIER = Announcement(2, 1);
+	if (diceValue == MEIER) {
+		logger.info() << "[" << className << "] " << name <<
+			" announces MEIER and claims a win of this round immediately!";
+	}
+	else {
+		if (previousAnnouncement.getValue() != 0 &&
+			!(diceValue > previousAnnouncement)) {
+			logger.debug() << "[" << className << "] " << name <<
+				" cannot announce a lower or equal value than the previous announcement!";
+			logger.debug() << "[" << className << "] " << name <<
+				" must announce at least: " <<
+				previousAnnouncement.nextHigher().getValue();
+			std::vector<Announcement> remainingAnnouncements = previousAnnouncement.allHigher();
+			if (remainingAnnouncements.empty()) {
+				logger.error() << "[" << className << "] " << "Error: No higher announcement possible!";
+				return Announcement(0, 0); // Error case
+			}
+			if (remainingAnnouncements.size() == 1) {
+				diceValue = remainingAnnouncements[0];
+			}
+			else {
+				// More than one possible announcement
+				// Cheat a bit by not choosing from the full range
+				// but only randomly from the lower half of the remaining announcements
+				// to increase the chance of winning
+				std::random_device rd;
+				std::mt19937 gen(rd());
+				// reduced range to exclude MEIER (thus -2 instead of -1)
+				size_t remainingSize = remainingAnnouncements.size() - 2;
+				// cheat but not being too obvious
+				size_t cheatSize = remainingSize / 2;
+				std::uniform_int_distribution<> dis(0, cheatSize);
+				diceValue = remainingAnnouncements[dis(gen)];
+			}
+		}
+		logger.info() << "[" << className << "] " << name << " announces: " <<
+			diceValue.getValue();
+	}
+	return diceValue;
 }
 
 
