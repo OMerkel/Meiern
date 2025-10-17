@@ -1,3 +1,13 @@
+/**
+ * @file Logger.h
+ * @brief Declaration of the Logger class.
+ *
+ * This class provides a logging interface for the application,
+ * allowing messages to be logged at different severity levels.
+ *
+ * @author Oliver Merkel
+ * @date 2025-10-14
+ */
 #pragma once
 #include <iostream>
 #include <fstream>
@@ -26,8 +36,12 @@ private:
     // Shared log file stream for singleton
     static std::ofstream file_;
 
+    // Store the logger's name
+    std::string name_;
+
     explicit Logger(const std::string& name = "", Level defaultLevel = Level::Info)
-        : consoleEnabled_(true),
+        : name_(name),
+          consoleEnabled_(true),
           fileEnabled_(false),
           consoleLevel_(defaultLevel),
           fileLevel_(defaultLevel) {}

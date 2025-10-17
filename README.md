@@ -1,5 +1,7 @@
 # Meiern
 
+Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The software is modular, test-driven, and designed for extensibility and clarity. The architecture is object-oriented, with each game concept represented by a dedicated class.
+
 ## Usage
 
 ### Install on Linux

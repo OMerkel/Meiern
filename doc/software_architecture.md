@@ -1,9 +1,9 @@
 
 # Meiern Software Architecture
 
-**Version:** 1.0.2
+**Version:** 1.0.3
 **Author:** OMerkel
-**Last Update:** October 13, 2025
+**Last Update:** October 16, 2025
 
 ---
 
@@ -50,19 +50,28 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
     - `getValue()`
     - `getEncodedValue()`
 
-- **Player**
-  - Represents a player in the game.
+- **AbstractPlayer**
+  - Abstract base class for all player types. Defines the interface for player actions and state.
   - Attributes:
     - `name`: Player name
     - `lives`: Number of lives
-    - `MeiernDiceCup*`: Optional dice cup
-  - Methods:
-    - `increaseLives()`
-    - `decreaseLives()`
-    - `announceValue()`
-    - `trustPreviousAnnouncement()`
-    - `doubtPreviousAnnouncement()`
-    - `performTurn()`
+    - `MeiernDiceCup* diceCup`: Optional dice cup
+  - Methods (all virtual):
+    - `getName()`, `getLives()`, `getLivesAsString()`
+    - `increaseLives()`, `decreaseLives()`
+    - `setDiceCup()`, `getDiceCup()`
+    - `performTurn()` (pure virtual)
+    - `announceValue()` (pure virtual)
+    - `trustPreviousAnnouncement()` (pure virtual)
+    - `doubtPreviousAnnouncement()` (pure virtual)
+
+- **AIPlayerSimple**
+  - Inherits from `AbstractPlayer`. Implements a simple AI strategy for all required virtual methods.
+  - Used as the default AI player in the game.
+
+- **HumanPlayer**
+  - Inherits from `AbstractPlayer`. Implements all required virtual methods with interactive console input/output.
+  - Used for human-controlled players.
 
 - **Logger**
   - Provides thread-safe, singleton-based logging to console and/or file.
@@ -101,10 +110,13 @@ CyclicList
   |
   |
   ♢ 1..*
-Player               Die
+AbstractPlayer <--- HumanPlayer
+               <--- AIPlayerSimple
+  |
+  |
+  |                  Die
   |                   ♢ *
-  |                   |
-  ♢ 0,1               |                   
+  ♢ 0,1               |
 MeiernDiceCup <--- DiceCup
 
 ```
@@ -142,25 +154,27 @@ As an optional information each relations arrow end might show a multiplicity if
 
 ## Example Game Session
 
+
 1. Create players and assign dice cups:
 
   ```cpp
-  Player alice("Alice", 3);
-  MeiernDiceCup cup;
-  alice.setDiceCup(&cup);
+  std::unique_ptr<AbstractPlayer> alice = std::make_unique<HumanPlayer>("Alice", 3);
+  std::unique_ptr<MeiernDiceCup> cup = std::make_unique<MeiernDiceCup>();
+  alice->setDiceCup(cup.get());
   ```
 
 <!-- markdownlint-disable-next-line MD029 -->
 2. Alice rolls and announces:
 
   ```cpp
-  Announcement announcement =  alice.performTurn();
+  Announcement announcement = alice->performTurn(previousAnnouncement);
   ```
 
 <!-- markdownlint-disable-next-line MD029 -->
-3. Bob compares with his own roll:
+3. Bob (AI) compares with his own roll:
 
   ```cpp
+  std::unique_ptr<AbstractPlayer> bob = std::make_unique<AIPlayerSimple>("Bob", 3);
   Announcement bobAnnouncement(5, 2);
   if (bobAnnouncement < previousAnnouncement) {
      // Bob's roll is lower
@@ -220,13 +234,14 @@ As an optional information each relations arrow end might show a multiplicity if
 ## Example Usage
 
 ```cpp
-// Create a player and dice cup
-Player player("Alice", 3);
-MeiernDiceCup cup;
-player.setDiceCup(&cup);
+
+// Create a human player and dice cup
+std::unique_ptr<AbstractPlayer> player = std::make_unique<HumanPlayer>("Alice", 3);
+std::unique_ptr<MeiernDiceCup> cup = std::make_unique<MeiernDiceCup>();
+player->setDiceCup(cup.get());
 
 // Player performs a turn
-int announcedValue = player.performTurn();
+int announcedValue = player->performTurn(previousAnnouncement);
 
 // Compare announcements
 Announcement a1(6, 6); // Double six
