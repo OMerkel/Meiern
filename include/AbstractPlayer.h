@@ -101,4 +101,5 @@ public:
     virtual Announcement announceValue(Announcement announcement) = 0;
     virtual bool trustPreviousAnnouncement() = 0;
     virtual bool doubtPreviousAnnouncement() = 0;
+    virtual bool trustsAnnouncement(Announcement announcement, Announcement previousAnnouncement) = 0;
 };

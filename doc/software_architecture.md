@@ -1,9 +1,8 @@
-
 # Meiern Software Architecture
 
-**Version:** 1.0.3
+**Version:** 1.0.4
 **Author:** OMerkel
-**Last Update:** October 16, 2025
+**Last Update:** October 18, 2025
 
 ---
 
@@ -52,6 +51,9 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
 
 - **AbstractPlayer**
   - Abstract base class for all player types. Defines the interface for player actions and state.
+  - Subclasses:
+    - [`HumanPlayer`](include/HumanPlayer.h): Implements interactive console input/output.
+    - [`AIPlayerSimple`](include/AIPlayerSimple.h): Implements a simple AI strategy.
   - Attributes:
     - `name`: Player name
     - `lives`: Number of lives
@@ -188,7 +190,7 @@ As an optional information each relations arrow end might show a multiplicity if
 
 ## Test Coverage
 
-- All core classes, including `Logger`, have dedicated unit tests in `gtest/`:
+- All core classes, including AI and Human players, are covered by Google Test-based unit tests in [`gtest/`](gtest).
   - CyclicList, Die, DiceCup, MeiernDiceCup, Announcement, Player, Game, Logger
 - Logger tests cover:
   - Console and file sink enable/disable
@@ -228,6 +230,39 @@ As an optional information each relations arrow end might show a multiplicity if
 
 - **Announcement Encoding**
   - The rules for ranking dice combinations (Meier, doubles, normal combinations) are encoded in the `Announcement` class, allowing for direct comparison and validation.
+
+- **Ranking order (lowest to highest)**
+  - Normal: 31, 32, 41, 42, 43, 51, 52, 53, 54, 61, 62, 63, 64, 65
+  - Doubles: 11, 22, 33, 44, 55, 66
+  - Meier: 21
+
+Each normal value can be rolled in 2 ways, each double in 1 way, Meier in 2 ways.
+
+Total possible rolls: 36
+
+| Announcement | # Lower or Equal | Probability      |
+|--------------|------------------|------------------|
+| 31           | 2                | 2/36 ≈ 5.56%     |
+| 32           | 4                | 4/36 ≈ 11.11%    |
+| 41           | 6                | 6/36 ≈ 16.67%    |
+| 42           | 8                | 8/36 ≈ 22.22%    |
+| 43           | 10               | 10/36 ≈ 27.78%   |
+| 51           | 12               | 12/36 ≈ 33.33%   |
+| 52           | 14               | 14/36 ≈ 38.89%   |
+| 53           | 16               | 16/36 ≈ 44.44%   |
+| 54           | 18               | 18/36 = 50.00%   |
+| 61           | 20               | 20/36 ≈ 55.56%   |
+| 62           | 22               | 22/36 ≈ 61.11%   |
+| 63           | 24               | 24/36 ≈ 66.67%   |
+| 64           | 26               | 26/36 ≈ 72.22%   |
+| 65           | 28               | 28/36 ≈ 77.78%   |
+| 11           | 29               | 29/36 ≈ 80.56%   |
+| 22           | 30               | 30/36 ≈ 83.33%   |
+| 33           | 31               | 31/36 ≈ 86.11%   |
+| 44           | 32               | 32/36 ≈ 88.89%   |
+| 55           | 33               | 33/36 ≈ 91.67%   |
+| 66           | 34               | 34/36 ≈ 94.44%   |
+| 21 (Meier)   | 36               | 36/36 = 100%     |
 
 ---
 
@@ -286,7 +321,8 @@ if (a2 > a1) {
 
 ## Directory Structure
 
-- `src/` — Core source files
+- `src/` — Core source files (implementation)
+- `include/` — Header files for all classes
 - `gtest/` — Unit tests
 - `doc/` — Documentation
 - `bin/` — Compiled binaries

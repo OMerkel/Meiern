@@ -132,4 +132,45 @@ public:
         logger_.info() << "[" << name_ << "] " << "doubts the previous announcement.";
         return true;
     }
+
+    /**
+     * @brief Decides whether to trust a given announcement.
+     * @param announcement The announcement to evaluate.
+     * @return true if the player decides to trust the announcement, false otherwise.
+     */
+    bool trustsAnnouncement(Announcement announcement, Announcement previousAnnouncement) override {
+        Announcement noPrevious = Announcement(0, 0);
+        Announcement easyGoing = Announcement(4, 3); // value 43
+        if (announcement <= easyGoing) {
+            logger_.debug() << "[" << name_ << "] " << "easy going announcement of " <<
+                announcement.getValue() << ", trusts automatically.";
+            return true;
+        }
+        if (previousAnnouncement == noPrevious) {
+            // No previous announcement, trust by 80%
+            logger_.debug() << "[" << name_ << "] " << "no previous announcement, trusts by 80%.";
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> dis(1, 100);
+            return dis(gen) <= 80;
+        }
+        static MeiernDiceCup cup;
+        cup.shake();
+        Announcement myComparisonRoll = cup.getDiceValue();
+        logger_.debug() << "[" << name_ << "] " << "comparison roll is " <<
+            myComparisonRoll.getValue() << " against announced " <<
+            announcement.getValue() << ".";
+
+        // Is it likely enough to trust the announcement?
+        if (myComparisonRoll > announcement) {
+            logger_.debug() << "[" << name_ << "] " << "decides to trust the announcement of " <<
+                announcement.getValue() << ".";
+            return true;
+        }
+        else {
+            logger_.debug() << "[" << name_ << "] " << "decides to doubt the announcement of " <<
+                announcement.getValue() << ".";
+            return false;
+        }
+    }
 };

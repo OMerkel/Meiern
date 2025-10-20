@@ -58,16 +58,11 @@ void Game::handoverDiceCup( CyclicList<std::unique_ptr<AbstractPlayer>>::iterato
 }
 
 std::string Game::runLoop() {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(1, 2);
-
-	const Announcement MEIER = Announcement(2, 1);
+    const Announcement MEIER = Announcement(2, 1);
 	const Announcement INVALID = Announcement(0, 0);
 	previousAnnouncement = Announcement(0, 0); // No previous announcement
     while (isRunning) {
         displayCurrentPlayers();
-		// int announced_value = dist(gen);
 		Announcement announcement = (*currentPlayer)->performTurn(previousAnnouncement);
         if (announcement == MEIER) {
 			if ((*currentPlayer)->getDiceCup()->getDiceValue() == MEIER) {
@@ -108,7 +103,7 @@ std::string Game::runLoop() {
 			    "Same player should try again.";
 			continue;
 		}
-		bool trust_announcement = (dist(gen) == 1);
+		bool trust_announcement = (*playerList.next(currentPlayer))->trustsAnnouncement(announcement, previousAnnouncement);
 		logger.info() << "[" << className << "] " << "Does " << (*playerList.next(currentPlayer))->getName() <<
 		    " trust the announcement? " << std::string(trust_announcement ? "Yes" : "No");
 		if (trust_announcement) {
@@ -119,8 +114,7 @@ std::string Game::runLoop() {
 		}
 		else {
 			(*playerList.next(currentPlayer))->doubtPreviousAnnouncement();
-			
-			// bool reduce_current = (dist(gen) == 1);
+
 			bool reduce_current = (*currentPlayer)->getDiceCup()->getDiceValue() <= previousAnnouncement;
 			logger.info() << "[" << className << "] " << "Revealing dice cup of " <<
 			    (*currentPlayer)->getName() << " which shows: " <<
