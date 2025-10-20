@@ -106,3 +106,31 @@ TEST(AIPlayerSimpleTest, GetDiceCupReturnsNullIfNotAssigned) {
     AIPlayerSimple player("TestPlayer", 3);
     EXPECT_EQ(player.getDiceCup(), nullptr);
 }
+
+TEST(AIPlayerSimpleTest, PerformTurnChoosesHigherAnnouncement) {
+    AIPlayerSimple player("TestPlayer", 3);
+    MeiernDiceCup cup;
+    player.setDiceCup(&cup);
+    Announcement previousAnnouncement(3, 4); // Encoded value 34
+    Announcement result = player.performTurn(previousAnnouncement);
+    EXPECT_GT(result.getEncodedValue(), previousAnnouncement.getEncodedValue());
+}
+
+TEST(AIPlayerSimpleTest, PerformTurnHandlesAnnouncingMeier) {
+    AIPlayerSimple player("TestPlayer", 3);
+    MeiernDiceCup cup;
+    player.setDiceCup(&cup);
+    Announcement meierAnnouncement(2, 1); // Encoded value 21
+    Announcement previousAnnouncement(6, 6);
+    Announcement result = player.performTurn(previousAnnouncement);
+    EXPECT_EQ(result, meierAnnouncement);
+}
+
+TEST(AIPlayerSimpleTest, PerformTurnHandlesNoHigherAnnouncement) {
+    AIPlayerSimple player("TestPlayer", 3);
+    MeiernDiceCup cup;
+    player.setDiceCup(&cup);
+    Announcement previousAnnouncement(2, 1); // Encoded value 21
+    Announcement result = player.performTurn(previousAnnouncement);
+    EXPECT_EQ(result, Announcement(0, 0)); // Error case
+}
