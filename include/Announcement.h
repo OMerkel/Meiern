@@ -1,3 +1,13 @@
+/**
+ * @file Announcement.h
+ * @brief Declaration of the Announcement class.
+ *
+ * This file contains the definition of the Announcement class,
+ * which represents a player's announcement in the Meiern dice game.
+ *
+ * @author Oliver Merkel
+ * @date 2025-10-14
+ */
 #pragma once
 #include <algorithm>
 #include <vector>

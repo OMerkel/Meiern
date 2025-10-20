@@ -1,3 +1,13 @@
+/**
+ * @file DiceCup.h
+ * @brief Declaration of the DiceCup class.
+ *
+ * This file contains the definition of the DiceCup class,
+ * which represents a collection of dice in the Meiern game.
+ *
+ * @author Oliver Merkel
+ * @date 2025-10-14
+ */
 #pragma once
 #include <vector>
 #include <memory>

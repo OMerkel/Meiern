@@ -22,7 +22,7 @@ std::mt19937 Die::rng(static_cast<unsigned int>(std::time(nullptr)));
  * @brief Constructs a Die with a specified number of sides.
  * @param sides Number of sides on the die (default is 6).
  */
-Die::Die(int sides) : sides(sides) {
+Die::Die(int sides) : sides_(sides) {
 	roll();
 }
 
@@ -32,9 +32,9 @@ Die::Die(int sides) : sides(sides) {
  * @return The new value of the die after rolling.
  */
 int Die::roll() {
-	std::uniform_int_distribution<int> dist(1, sides);
-	value = dist(rng);
-	return value;
+	std::uniform_int_distribution<int> dist(1, sides_);
+	value_ = dist(rng);
+	return value_;
 }
 
 
@@ -43,5 +43,5 @@ int Die::roll() {
  * @return The current value of the die.
  */
 int Die::getValue() const {
-	return value;
+	return value_;
 }

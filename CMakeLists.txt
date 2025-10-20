@@ -13,6 +13,9 @@ if(COVERAGE)
     endif()
 endif()
 
+# Add include directory for headers
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 add_executable(meiern
     src/meiern_main.cpp
     src/Announcement.cpp
@@ -23,14 +26,17 @@ add_executable(meiern
     src/Interaction.cpp
     src/Logger.cpp
     src/MeiernDiceCup.cpp
-    src/Player.cpp
+)
+
+target_compile_options(meiern PRIVATE
+    $<$<CXX_COMPILER_ID:GNU,Clang>:-Wall -Wextra -Wpedantic -Werror -Wconversion -Wshadow>
+    $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
 )
 
 # Set output directory for binaries
 set_target_properties(meiern PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
-
 
 enable_testing()
 add_subdirectory(gtest)

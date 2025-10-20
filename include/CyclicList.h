@@ -1,3 +1,13 @@
+/**
+ * @file CyclicList.h
+ * @brief Declaration of the CyclicList class.
+ *
+ * This file contains the definition of the CyclicList class,
+ * which is a wrapper around std::list to provide cyclic iteration.
+ *
+ * @author Oliver Merkel
+ * @date 2025-10-14
+ */
 #pragma once
 #include <list>
 #include <iterator>
@@ -10,8 +20,8 @@ public:
     using iterator = typename std::list<T>::iterator;
     using const_iterator = typename std::list<T>::const_iterator;
 
-    void push_back(const T& value) { data_.push_back(value); }
-    void push_front(const T& value) { data_.push_front(value); }
+    void push_back(T&& value) { data_.push_back(std::move(value)); }
+    void push_front(T&& value) { data_.push_front(std::move(value)); }
     void clear() { data_.clear(); }
     bool empty() const { return data_.empty(); }
     iterator erase(const_iterator it) { return data_.erase(it); }
