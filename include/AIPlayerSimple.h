@@ -136,6 +136,7 @@ public:
     /**
      * @brief Decides whether to trust a given announcement.
      * @param announcement The announcement to evaluate.
+     * @param previousAnnouncement The previous announcement made in the game.
      * @return true if the player decides to trust the announcement, false otherwise.
      */
     bool trustsAnnouncement(Announcement announcement, Announcement previousAnnouncement) override {

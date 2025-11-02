@@ -4,54 +4,110 @@ Meiern is a C++ implementation of the classic dice game "Meiern" (Mäxchen). The
 
 ## Usage
 
-### Install on Linux
+### Build Environment Install on...
+
+This section is to support with FAQ that might come up depending on your selected OS.
+For Unix-alike OS see [pkgs.org](https://pkgs.org/) on any package information.
+
+#### ... Linux
 
 In case your Linux is supported by apt package manager:
 
 ``` bash
-.../meiern$ sudo apt-get update
-.../meiern$ sudo apt-get upgrade
-.../meiern$ sudo apt-get install build-essential
-.../meiern$ sudo apt install cmake libgtest-dev gdb ninja-build
-.../meiern$ sudo apt install gcovr
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install build-essential
+sudo apt install cmake libgtest-dev gdb ninja-build
+sudo apt install gcovr
+sudo apt install doxygen graphviz
+```
+
+#### ... MacOS
+
+If you like to use [Homebrew](https://brew.sh/)
+
+``` zsh
+brew install llvm
+brew install cmake
+brew install googletest
+brew install ninja
+brew install gdb
+brew install gcovr
+```
+
+If you prefer to use [MacPorts](https://ports.macports.org/)
+
+``` zsh
+sudo port install clang-20
+sudo port install cmake
+sudo port install gtest
+sudo port install ninja
+sudo port install gdb
+sudo port install gcovr
+```
+
+#### ... FreeBSD, OpenBSD, GhostBSD
+
+Some BSD do not come with dev tools installed, e.g. GhostBSD.
+Meaning that for instance standard system includes might be missing. In such a case follow the hints on
+[GhostBSD Documentation Portal](https://ghostbsd-documentation-portal.readthedocs.io/en/latest/user/FAQ.html#why-can-t-i-compile-code-or-ports-on-ghostbsd)
+
+``` bash
+sudo pkg install -g 'GhostBSD*-dev'
+```
+
+In general on FreeBSD
+
+``` bash
+sudo pkg update
+sudo pkg upgrade
+sudo pkg install git
+sudo pkg install llvm  # usually already installed, but to be explicit
+sudo pkg install cmake
+sudo pkg install gmake  # usually already installed
+sudo pkg install ninja
+sudo pkg install gdb
+sudo pkg install googletest
 ```
 
 ### Build and Run
 
 ``` bash
-.../meiern$ cmake .
-.../meiern$ cmake --build . -v
+cmake --version
+cmake .
+cmake --build . -v
 ```
 
 Enforcing a specific compiler (here clang++ / clang).
 
 ``` bash
-.../meiern$ cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DCMAKE_C_COMPILER=/usr/bin/clang .
+cmake -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DCMAKE_C_COMPILER=/usr/bin/clang .
 ```
 
 To explicitely build with debug symbols:
 
 ``` bash
-.../meiern$ cmake -DCMAKE_BUILD_TYPE=Debug 
+cmake -DCMAKE_BUILD_TYPE=Debug 
 ```
 
 To explicitely build release type:
 
 ``` bash
-.../meiern$ cmake -DCMAKE_BUILD_TYPE=Release 
+cmake -DCMAKE_BUILD_TYPE=Release 
 ```
 
 Even more sophisticated alternative:
 
 ``` bash
-.../meiern$ /usr/bin/cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ --no-warn-unused-cli -S ~/github/Meiern -B ~/github/Meiern/build -G Ninja
-.../meiern$ /usr/bin/cmake --build ~/github/Meiern/build --config Debug --target all --
+/usr/bin/cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ --no-warn-unused-cli -S ~/github/Meiern -B ~/github/Meiern/build -G Ninja
+/usr/bin/cmake --build ~/github/Meiern/build --config Debug --target all --
 ```
 
 To run tests and then run the binary:
 
 ``` bash
-.../meiern$ bin/meiern_tests # to run the tests
+bin/meiern_tests # to run the tests
+
 Running main() from ./googletest/src/gtest_main.cc
 [==========] Running 8 tests from 3 test suites.
 [----------] Global test environment set-up.
@@ -83,7 +139,8 @@ Running main() from ./googletest/src/gtest_main.cc
 [----------] Global test environment tear-down
 [==========] 8 tests from 3 test suites ran. (0 ms total)
 [  PASSED  ] 8 tests.
-.../meiern$ bin/meiern
+
+bin/meiern  # to start the game
 ```
 
 Alternatively use ctest
@@ -101,7 +158,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
 After clean building and running the tests the coverage tooling must execute
 
 ``` bash
-.../meiern$ gcovr -r . --object-directory build/
+gcovr -r . --object-directory build/
+
 (WARNING) relative referencing in --object-directory.
         this could cause strange errors when gcovr attempts to
         identify the original gcc working directory.
@@ -157,3 +215,15 @@ In case "the value of miDebuggerPath is invalid":
   * "Remote-WSL: New Window" or
   * "Remote-WSL: Reopen Folder in WSL" or
   * "WSL: Connect to WSL" or similar from the menu
+
+### Build Documentation with Doxygen
+
+Use the CMake custom target doc
+
+``` bash
+/usr/bin/cmake --build <your-repository-directory>/Meiern/build --config Debug --target doc --
+```
+
+\<your-repository-directory\> has to be set to a valid path in your environment
+
+Then the HTML documentation is generated in 'build/html'
