@@ -324,7 +324,7 @@ if (a2 > a1) {
 - `src/` — Core source files (implementation)
 - `include/` — Header files for all classes
 - `gtest/` — Unit tests
-- `doc/` — Documentation
+- `docs/` — Documentation
 - `bin/` — Compiled binaries
 - `CMakeLists.txt`, `Makefile` — Build configuration
 
