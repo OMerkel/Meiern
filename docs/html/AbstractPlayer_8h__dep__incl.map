@@ -1,0 +1,8 @@
+<map id="/mnt/d/private/github/Meiern/include/AbstractPlayer.h" name="/mnt/d/private/github/Meiern/include/AbstractPlayer.h">
+<area shape="rect" id="node1" title="Declaration of the AbstractPlayer class." alt="" coords="164,5,396,47"/>
+<area shape="rect" id="node2" href="$AIPlayerSimple_8h.html" title="Declaration of the AIPlayerSimple class." alt="" coords="5,95,243,136"/>
+<area shape="rect" id="node3" href="$Game_8h.html" title="Declaration of the Game class." alt="" coords="113,184,290,225"/>
+<area shape="rect" id="node6" href="$HumanPlayer_8h.html" title="Declaration of the HumanPlayer class." alt="" coords="317,95,542,136"/>
+<area shape="rect" id="node4" href="$Game_8cpp.html" title="Implementation of the Game class for the Meiern dice game." alt="" coords="14,273,178,315"/>
+<area shape="rect" id="node5" href="$meiern__main_8cpp.html" title="Entry point for the Meiern game application." alt="" coords="203,273,413,315"/>
+</map>

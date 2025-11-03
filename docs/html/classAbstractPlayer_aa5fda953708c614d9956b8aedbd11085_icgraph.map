@@ -1,0 +1,5 @@
+<map id="AbstractPlayer::getName" name="AbstractPlayer::getName">
+<area shape="rect" id="node1" title="Retrieves the name of the player." alt="" coords="260,42,445,69"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#ad54d672904a954b232ce7f8212a9afe2" title="Constructs a Player with a given name and initial number of lives." alt="" coords="17,5,200,47"/>
+<area shape="rect" id="node3" href="$classHumanPlayer.html#a376c501e2860264bbf10a9207314eb18" title="Constructs a Player with a given name and initial number of lives." alt="" coords="5,71,212,98"/>
+</map>

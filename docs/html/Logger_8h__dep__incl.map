@@ -1,0 +1,10 @@
+<map id="/mnt/d/private/github/Meiern/include/Logger.h" name="/mnt/d/private/github/Meiern/include/Logger.h">
+<area shape="rect" id="node1" title="Declaration of the Logger class." alt="" coords="343,5,524,47"/>
+<area shape="rect" id="node2" href="$AbstractPlayer_8h.html" title="Declaration of the AbstractPlayer class." alt="" coords="164,95,396,136"/>
+<area shape="rect" id="node3" href="$AIPlayerSimple_8h.html" title="Declaration of the AIPlayerSimple class." alt="" coords="5,184,243,225"/>
+<area shape="rect" id="node4" href="$Game_8h.html" title="Declaration of the Game class." alt="" coords="191,273,369,315"/>
+<area shape="rect" id="node7" href="$HumanPlayer_8h.html" title="Declaration of the HumanPlayer class." alt="" coords="317,184,542,225"/>
+<area shape="rect" id="node8" href="$Logger_8cpp.html" title="Implementation of the Logger class." alt="" coords="616,95,784,136"/>
+<area shape="rect" id="node5" href="$Game_8cpp.html" title="Implementation of the Game class for the Meiern dice game." alt="" coords="93,363,257,404"/>
+<area shape="rect" id="node6" href="$meiern__main_8cpp.html" title="Entry point for the Meiern game application." alt="" coords="281,363,492,404"/>
+</map>

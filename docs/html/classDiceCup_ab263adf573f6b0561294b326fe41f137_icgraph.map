@@ -1,0 +1,7 @@
+<map id="DiceCup::getDiceCount" name="DiceCup::getDiceCount">
+<area shape="rect" id="node1" title="Returns the number of dice currently in the cup." alt="" coords="795,31,967,57"/>
+<area shape="rect" id="node2" href="$classMeiernDiceCup.html#a2a56033eafd871206f91e8671f8137ea" title="Retrieves the current dice values as an Announcement." alt="" coords="532,31,747,57"/>
+<area shape="rect" id="node3" href="$classMeiernDiceCup.html#ad2dc2b4ec4b857c2968c54f130bbb081" title=" " alt="" coords="317,5,484,32"/>
+<area shape="rect" id="node5" href="$classAIPlayerSimple.html#a4a132a784a4c619b0c0dc952ba777181" title="Decides whether to trust a given announcement." alt="" coords="5,56,269,83"/>
+<area shape="rect" id="node4" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="33,5,241,32"/>
+</map>

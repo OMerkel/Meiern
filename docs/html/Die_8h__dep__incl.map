@@ -1,0 +1,14 @@
+<map id="/mnt/d/private/github/Meiern/include/Die.h" name="/mnt/d/private/github/Meiern/include/Die.h">
+<area shape="rect" id="node1" title="Declaration of the Die class." alt="" coords="541,5,701,47"/>
+<area shape="rect" id="node2" href="$DiceCup_8h.html" title="Declaration of the DiceCup class." alt="" coords="425,95,617,136"/>
+<area shape="rect" id="node12" href="$Die_8cpp.html" title="Implementation of the Die class for simulating dice rolls." alt="" coords="642,95,801,136"/>
+<area shape="rect" id="node3" href="$MeiernDiceCup_8h.html" title="Declaration of the MeiernDiceCup class." alt="" coords="287,184,524,225"/>
+<area shape="rect" id="node11" href="$DiceCup_8cpp.html" title="Implementation of the DiceCup class, which manages a collection of dice." alt="" coords="548,184,727,225"/>
+<area shape="rect" id="node4" href="$AbstractPlayer_8h.html" title="Declaration of the AbstractPlayer class." alt="" coords="164,273,396,315"/>
+<area shape="rect" id="node10" href="$MeiernDiceCup_8cpp.html" title="Implementation of the MeiernDiceCup class for the Meiern dice game." alt="" coords="420,273,644,315"/>
+<area shape="rect" id="node5" href="$AIPlayerSimple_8h.html" title="Declaration of the AIPlayerSimple class." alt="" coords="5,363,243,404"/>
+<area shape="rect" id="node6" href="$Game_8h.html" title="Declaration of the Game class." alt="" coords="113,452,290,493"/>
+<area shape="rect" id="node9" href="$HumanPlayer_8h.html" title="Declaration of the HumanPlayer class." alt="" coords="317,363,542,404"/>
+<area shape="rect" id="node7" href="$Game_8cpp.html" title="Implementation of the Game class for the Meiern dice game." alt="" coords="14,541,178,583"/>
+<area shape="rect" id="node8" href="$meiern__main_8cpp.html" title="Entry point for the Meiern game application." alt="" coords="203,541,413,583"/>
+</map>

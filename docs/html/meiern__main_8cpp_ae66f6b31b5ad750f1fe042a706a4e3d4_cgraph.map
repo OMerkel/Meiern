@@ -1,0 +1,18 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="Main function to start the Meiern game." alt="" coords="5,333,60,360"/>
+<area shape="rect" id="node2" href="$classGame.html#a21e84929e65becfaf841315c4a710db0" title=" " alt="" coords="108,485,229,512"/>
+<area shape="rect" id="node10" href="$classGame.html#acc9a76ffc666fff5fc2e15a388dd8b89" title=" " alt="" coords="116,181,221,208"/>
+<area shape="rect" id="node3" href="$classGame.html#a041c5124e270eb77792e6dc1fb5ccd5b" title=" " alt="" coords="277,409,489,436"/>
+<area shape="rect" id="node4" href="$classLogger.html#a01c0418adaf7a2c70e330bbc727f4bcf" title=" " alt="" coords="549,359,647,385"/>
+<area shape="rect" id="node5" href="$classCyclicList.html#a6f2f89835357e21a066860f1b66db128" title=" " alt="" coords="537,435,659,461"/>
+<area shape="rect" id="node6" href="$classCyclicList.html#a15fc77cb16d9e64ee537b8873fd8725c" title=" " alt="" coords="319,511,447,537"/>
+<area shape="rect" id="node7" href="$classLogger.html#af62eeadd3bc7d7859f53f7dcd529c2a0" title=" " alt="" coords="331,561,436,588"/>
+<area shape="rect" id="node8" href="$classGame.html#a9e1bb97110af4614de7023e696f6661d" title=" " alt="" coords="291,612,475,639"/>
+<area shape="rect" id="node9" href="$classCyclicList.html#a45b86b5e4147a1d470b51a6d25654f6d" title=" " alt="" coords="324,663,443,689"/>
+<area shape="rect" id="node11" href="$classInteraction.html#af56f22e33c6eb8f6961ad5a9b94ce8cd" title="Prompts the user to enter their name." alt="" coords="300,55,467,81"/>
+<area shape="rect" id="node12" href="$classCyclicList.html#a11804f5deae630052d5285cca16714fc" title=" " alt="" coords="319,105,447,132"/>
+<area shape="rect" id="node13" href="$classCyclicList.html#a428e337867c68a905053fbbd510699cf" title=" " alt="" coords="321,156,445,183"/>
+<area shape="rect" id="node14" href="$classLogger.html#ada857f479ed965d4120afe3ad2700fda" title=" " alt="" coords="326,207,441,233"/>
+<area shape="rect" id="node15" href="$classGreeting.html#a21b0bf5114b8a6a504780c944b70912f" title="Generates a greeting message." alt="" coords="299,257,467,284"/>
+<area shape="rect" id="node16" href="$classCyclicList.html#a9b35df35eb36f05de8e888d2ded2a866" title=" " alt="" coords="303,308,464,335"/>
+</map>

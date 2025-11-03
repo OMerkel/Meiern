@@ -1,0 +1,7 @@
+<map id="Logger::error" name="Logger::error">
+<area shape="rect" id="node1" title=" " alt="" coords="364,56,469,83"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="108,5,316,32"/>
+<area shape="rect" id="node3" href="$classHumanPlayer.html#a7f015ea67a84295d87171850480697af" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="113,56,311,83"/>
+<area shape="rect" id="node4" href="$classGame.html#a21e84929e65becfaf841315c4a710db0" title=" " alt="" coords="151,107,273,133"/>
+<area shape="rect" id="node5" href="$meiern__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function to start the Meiern game." alt="" coords="5,107,60,133"/>
+</map>

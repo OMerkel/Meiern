@@ -1,0 +1,6 @@
+<map id="Logger::LogStream::flushIfNeeded" name="Logger::LogStream::flushIfNeeded">
+<area shape="rect" id="node1" title=" " alt="" coords="5,23,157,65"/>
+<area shape="rect" id="node2" href="$classLogger.html#a1eb58a68183e00f1ce785374ba4a56b2" title="Emits a log message to the enabled sinks (console and/or file)." alt="" coords="205,31,309,57"/>
+<area shape="rect" id="node3" href="$classLogger.html#a54f513e8e84dccdc3c6ffd3de6d66983" title="Converts a log level enum to its string representation." alt="" coords="372,5,517,32"/>
+<area shape="rect" id="node4" href="$classLogger.html#a964dccab7485ccf9dafc3e2e3544a2fd" title="Generates a timestamp string for log entries." alt="" coords="357,56,532,83"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="MeiernDiceCup::shake" name="MeiernDiceCup::shake">
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,172,108"/>
+<area shape="rect" id="node2" href="$classMeiernDiceCup.html#a2a56033eafd871206f91e8671f8137ea" title="Retrieves the current dice values as an Announcement." alt="" coords="220,56,435,83"/>
+<area shape="rect" id="node6" href="$classDiceCup.html#ae3de323007d290d3434cfcce157ee372" title="Rolls all dice in the cup." alt="" coords="266,107,389,133"/>
+<area shape="rect" id="node3" href="$classDiceCup.html#ab263adf573f6b0561294b326fe41f137" title="Returns the number of dice currently in the cup." alt="" coords="483,5,655,32"/>
+<area shape="rect" id="node4" href="$classDiceCup.html#acbab0018d39626525d6fd42b6dac1c86" title="Retrieves a constant pointer to the die at the specified index." alt="" coords="505,56,632,83"/>
+<area shape="rect" id="node5" href="$classDie.html#acc2c09cbe0da2d31caefd4e93fc61a12" title="Retrieves the current value of the die." alt="" coords="514,107,623,133"/>
+</map>

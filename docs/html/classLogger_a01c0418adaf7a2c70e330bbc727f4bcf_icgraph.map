@@ -1,0 +1,16 @@
+<map id="Logger::info" name="Logger::info">
+<area shape="rect" id="node1" title=" " alt="" coords="635,326,733,353"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#ad54d672904a954b232ce7f8212a9afe2" title="Constructs a Player with a given name and initial number of lives." alt="" coords="384,5,567,47"/>
+<area shape="rect" id="node3" href="$classAIPlayerSimple.html#a0cb7ab44b578139a12590467bfbf3934" title="Announces a dice value." alt="" coords="379,71,571,112"/>
+<area shape="rect" id="node4" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="108,107,316,134"/>
+<area shape="rect" id="node5" href="$classHumanPlayer.html#a55e94676251f94f6a1669f8933dd6aa8" title="Announces a dice value." alt="" coords="367,187,584,214"/>
+<area shape="rect" id="node6" href="$classHumanPlayer.html#a7f015ea67a84295d87171850480697af" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="113,213,311,239"/>
+<area shape="rect" id="node7" href="$classAbstractPlayer.html#a34472b5517d48e972791119e353c9361" title="Decreases the player&#39;s lives by a specified amount." alt="" coords="383,289,567,331"/>
+<area shape="rect" id="node8" href="$classGame.html#a041c5124e270eb77792e6dc1fb5ccd5b" title=" " alt="" coords="369,355,581,382"/>
+<area shape="rect" id="node9" href="$classGame.html#a21e84929e65becfaf841315c4a710db0" title=" " alt="" coords="151,406,273,433"/>
+<area shape="rect" id="node11" href="$classAIPlayerSimple.html#ab0e7d6dca9b766f9a97975a483be6c46" title="Indicates that the player doubts the previous announcement." alt="" coords="364,457,587,499"/>
+<area shape="rect" id="node12" href="$classHumanPlayer.html#a376c501e2860264bbf10a9207314eb18" title="Constructs a Player with a given name and initial number of lives." alt="" coords="372,523,579,550"/>
+<area shape="rect" id="node13" href="$classGame.html#acc9a76ffc666fff5fc2e15a388dd8b89" title=" " alt="" coords="159,515,265,542"/>
+<area shape="rect" id="node14" href="$classAIPlayerSimple.html#a2b28c43839c68029acd438c343cf9c7a" title="Indicates that the player trusts the previous announcement." alt="" coords="368,625,583,667"/>
+<area shape="rect" id="node10" href="$meiern__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function to start the Meiern game." alt="" coords="5,490,60,517"/>
+</map>

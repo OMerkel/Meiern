@@ -1,0 +1,8 @@
+<map id="Logger::nowTimestamp" name="Logger::nowTimestamp">
+<area shape="rect" id="node1" title="Generates a timestamp string for log entries." alt="" coords="557,78,732,105"/>
+<area shape="rect" id="node2" href="$classLogger.html#a1eb58a68183e00f1ce785374ba4a56b2" title="Emits a log message to the enabled sinks (console and/or file)." alt="" coords="405,78,509,105"/>
+<area shape="rect" id="node3" href="$classLogger_1_1LogStream.html#a3b39ec3cc89e75aa2c3a383e62018971" title=" " alt="" coords="205,71,357,112"/>
+<area shape="rect" id="node4" href="$classLogger_1_1LogStream.html#ae6b7a42074a563b147e524ef74da21e5" title=" " alt="" coords="5,5,157,47"/>
+<area shape="rect" id="node5" href="$classLogger_1_1LogStream.html#ae657246a15bd4c3fee050efc2aee6110" title=" " alt="" coords="5,71,157,112"/>
+<area shape="rect" id="node6" href="$classLogger_1_1LogStream.html#a544defb6791006136ff6368bd3046a5e" title=" " alt="" coords="5,136,157,177"/>
+</map>

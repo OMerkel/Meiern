@@ -1,0 +1,4 @@
+<map id="HumanPlayer::announceValue" name="HumanPlayer::announceValue">
+<area shape="rect" id="node1" title="Announces a dice value." alt="" coords="251,5,468,32"/>
+<area shape="rect" id="node2" href="$classHumanPlayer.html#a7f015ea67a84295d87171850480697af" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="5,5,203,32"/>
+</map>

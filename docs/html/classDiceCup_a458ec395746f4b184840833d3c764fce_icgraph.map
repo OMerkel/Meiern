@@ -1,0 +1,4 @@
+<map id="DiceCup::addDie" name="DiceCup::addDie">
+<area shape="rect" id="node1" title="Adds a new die with a specified number of sides to the cup." alt="" coords="281,5,412,32"/>
+<area shape="rect" id="node2" href="$classMeiernDiceCup.html#a2b133cdcb82468f0f86248a12312365b" title="Constructor for the MeiernDiceCup class. Initializes the cup with two six&#45;sided dice." alt="" coords="5,5,233,32"/>
+</map>

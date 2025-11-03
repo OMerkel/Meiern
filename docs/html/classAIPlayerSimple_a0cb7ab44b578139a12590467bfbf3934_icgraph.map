@@ -1,0 +1,4 @@
+<map id="AIPlayerSimple::announceValue" name="AIPlayerSimple::announceValue">
+<area shape="rect" id="node1" title="Announces a dice value." alt="" coords="261,5,453,47"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="5,13,213,39"/>
+</map>

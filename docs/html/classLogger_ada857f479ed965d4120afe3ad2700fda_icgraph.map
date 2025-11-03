@@ -1,0 +1,8 @@
+<map id="Logger::debug" name="Logger::debug">
+<area shape="rect" id="node1" title=" " alt="" coords="420,81,535,108"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="136,5,344,32"/>
+<area shape="rect" id="node3" href="$classHumanPlayer.html#a7f015ea67a84295d87171850480697af" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="141,56,339,83"/>
+<area shape="rect" id="node4" href="$classGame.html#acc9a76ffc666fff5fc2e15a388dd8b89" title=" " alt="" coords="187,107,293,133"/>
+<area shape="rect" id="node6" href="$classAIPlayerSimple.html#a4a132a784a4c619b0c0dc952ba777181" title="Decides whether to trust a given announcement." alt="" coords="108,157,372,184"/>
+<area shape="rect" id="node5" href="$meiern__main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Main function to start the Meiern game." alt="" coords="5,107,60,133"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Die::roll" name="Die::roll">
+<area shape="rect" id="node1" title="Rolls the die to generate a new random value." alt="" coords="128,5,201,32"/>
+<area shape="rect" id="node2" href="$classDie.html#a947005baaf49a0ff7ce8bc9185f986e0" title="Constructs a Die with a specified number of sides." alt="" coords="5,5,80,32"/>
+</map>

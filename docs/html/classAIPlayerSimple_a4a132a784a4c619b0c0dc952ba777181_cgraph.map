@@ -1,0 +1,11 @@
+<map id="AIPlayerSimple::trustsAnnouncement" name="AIPlayerSimple::trustsAnnouncement">
+<area shape="rect" id="node1" title="Decides whether to trust a given announcement." alt="" coords="5,81,269,108"/>
+<area shape="rect" id="node2" href="$classLogger.html#ada857f479ed965d4120afe3ad2700fda" title=" " alt="" coords="353,5,467,32"/>
+<area shape="rect" id="node3" href="$classMeiernDiceCup.html#a2a56033eafd871206f91e8671f8137ea" title="Retrieves the current dice values as an Announcement." alt="" coords="551,81,765,108"/>
+<area shape="rect" id="node7" href="$classAnnouncement.html#a49901230207db588db73a8d3a80fd347" title=" " alt="" coords="317,107,503,133"/>
+<area shape="rect" id="node8" href="$classMeiernDiceCup.html#ad2dc2b4ec4b857c2968c54f130bbb081" title=" " alt="" coords="327,157,493,184"/>
+<area shape="rect" id="node4" href="$classDiceCup.html#ab263adf573f6b0561294b326fe41f137" title="Returns the number of dice currently in the cup." alt="" coords="813,31,985,57"/>
+<area shape="rect" id="node5" href="$classDiceCup.html#acbab0018d39626525d6fd42b6dac1c86" title="Retrieves a constant pointer to the die at the specified index." alt="" coords="836,81,963,108"/>
+<area shape="rect" id="node6" href="$classDie.html#acc2c09cbe0da2d31caefd4e93fc61a12" title="Retrieves the current value of the die." alt="" coords="845,132,954,159"/>
+<area shape="rect" id="node9" href="$classDiceCup.html#ae3de323007d290d3434cfcce157ee372" title="Rolls all dice in the cup." alt="" coords="597,157,719,184"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="HumanPlayer::announceValue" name="HumanPlayer::announceValue">
+<area shape="rect" id="node1" title="Announces a dice value." alt="" coords="5,31,223,57"/>
+<area shape="rect" id="node2" href="$classAnnouncement.html#a49901230207db588db73a8d3a80fd347" title=" " alt="" coords="271,5,456,32"/>
+<area shape="rect" id="node3" href="$classLogger.html#a01c0418adaf7a2c70e330bbc727f4bcf" title=" " alt="" coords="314,56,413,83"/>
+</map>

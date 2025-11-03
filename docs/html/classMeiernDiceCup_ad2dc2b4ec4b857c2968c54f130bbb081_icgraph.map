@@ -1,0 +1,5 @@
+<map id="MeiernDiceCup::shake" name="MeiernDiceCup::shake">
+<area shape="rect" id="node1" title=" " alt="" coords="317,31,484,57"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="33,5,241,32"/>
+<area shape="rect" id="node3" href="$classAIPlayerSimple.html#a4a132a784a4c619b0c0dc952ba777181" title="Decides whether to trust a given announcement." alt="" coords="5,56,269,83"/>
+</map>

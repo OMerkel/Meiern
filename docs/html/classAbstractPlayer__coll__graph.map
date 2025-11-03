@@ -1,0 +1,6 @@
+<map id="AbstractPlayer" name="AbstractPlayer">
+<area shape="rect" id="node1" title=" " alt="" coords="21,171,139,197"/>
+<area shape="rect" id="node2" href="$classLogger.html" title=" " alt="" coords="5,81,72,108"/>
+<area shape="rect" id="node3" href="$classMeiernDiceCup.html" title=" " alt="" coords="97,81,218,108"/>
+<area shape="rect" id="node4" href="$classDiceCup.html" title="Represents a cup containing multiple dice." alt="" coords="119,5,195,32"/>
+</map>

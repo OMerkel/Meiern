@@ -1,0 +1,6 @@
+<map id="MeiernDiceCup::getDiceValue" name="MeiernDiceCup::getDiceValue">
+<area shape="rect" id="node1" title="Retrieves the current dice values as an Announcement." alt="" coords="5,56,220,83"/>
+<area shape="rect" id="node2" href="$classDiceCup.html#ab263adf573f6b0561294b326fe41f137" title="Returns the number of dice currently in the cup." alt="" coords="268,5,440,32"/>
+<area shape="rect" id="node3" href="$classDiceCup.html#acbab0018d39626525d6fd42b6dac1c86" title="Retrieves a constant pointer to the die at the specified index." alt="" coords="291,56,417,83"/>
+<area shape="rect" id="node4" href="$classDie.html#acc2c09cbe0da2d31caefd4e93fc61a12" title="Retrieves the current value of the die." alt="" coords="299,107,409,133"/>
+</map>

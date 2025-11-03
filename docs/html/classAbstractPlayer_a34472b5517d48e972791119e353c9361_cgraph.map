@@ -1,0 +1,5 @@
+<map id="AbstractPlayer::decreaseLives" name="AbstractPlayer::decreaseLives">
+<area shape="rect" id="node1" title="Decreases the player&#39;s lives by a specified amount." alt="" coords="5,35,189,76"/>
+<area shape="rect" id="node2" href="$classAbstractPlayer.html#a611b7116592b68789b3b7a78f43d9878" title="Retrieves the player&#39;s lives as a formatted string." alt="" coords="237,5,417,47"/>
+<area shape="rect" id="node3" href="$classLogger.html#a01c0418adaf7a2c70e330bbc727f4bcf" title=" " alt="" coords="278,71,377,98"/>
+</map>

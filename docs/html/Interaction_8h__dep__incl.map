@@ -1,0 +1,7 @@
+<map id="/mnt/d/private/github/Meiern/include/Interaction.h" name="/mnt/d/private/github/Meiern/include/Interaction.h">
+<area shape="rect" id="node1" title="Declaration of the Interaction class." alt="" coords="194,5,402,47"/>
+<area shape="rect" id="node2" href="$Game_8h.html" title="Declaration of the Game class." alt="" coords="104,95,281,136"/>
+<area shape="rect" id="node5" href="$Interaction_8cpp.html" title="Implementation of the Interaction class for user input and output." alt="" coords="306,95,501,136"/>
+<area shape="rect" id="node3" href="$Game_8cpp.html" title="Implementation of the Game class for the Meiern dice game." alt="" coords="5,184,169,225"/>
+<area shape="rect" id="node4" href="$meiern__main_8cpp.html" title="Entry point for the Meiern game application." alt="" coords="194,184,405,225"/>
+</map>

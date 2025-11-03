@@ -1,0 +1,6 @@
+<map id="Announcement::Announcement" name="Announcement::Announcement">
+<area shape="rect" id="node1" title=" " alt="" coords="509,31,736,57"/>
+<area shape="rect" id="node2" href="$classAnnouncement.html#abeca15f92c8b00b9cd7353d4c734e0ad" title=" " alt="" coords="261,31,461,57"/>
+<area shape="rect" id="node3" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="5,5,213,32"/>
+<area shape="rect" id="node4" href="$classHumanPlayer.html#a7f015ea67a84295d87171850480697af" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="11,56,208,83"/>
+</map>

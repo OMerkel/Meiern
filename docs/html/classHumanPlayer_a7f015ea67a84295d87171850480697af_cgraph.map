@@ -1,0 +1,11 @@
+<map id="HumanPlayer::performTurn" name="HumanPlayer::performTurn">
+<area shape="rect" id="node1" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="5,157,203,184"/>
+<area shape="rect" id="node2" href="$classAnnouncement.html#a232467d89c5b3ed1dfe3312b1880dadf" title=" " alt="" coords="266,5,453,32"/>
+<area shape="rect" id="node3" href="$classHumanPlayer.html#a55e94676251f94f6a1669f8933dd6aa8" title="Announces a dice value." alt="" coords="251,107,468,133"/>
+<area shape="rect" id="node4" href="$classAnnouncement.html#a49901230207db588db73a8d3a80fd347" title=" " alt="" coords="537,69,722,96"/>
+<area shape="rect" id="node5" href="$classLogger.html#a01c0418adaf7a2c70e330bbc727f4bcf" title=" " alt="" coords="580,132,679,159"/>
+<area shape="rect" id="node6" href="$classLogger.html#ada857f479ed965d4120afe3ad2700fda" title=" " alt="" coords="302,208,417,235"/>
+<area shape="rect" id="node7" href="$classLogger.html#af62eeadd3bc7d7859f53f7dcd529c2a0" title=" " alt="" coords="307,259,412,285"/>
+<area shape="rect" id="node8" href="$classAnnouncement.html#abeca15f92c8b00b9cd7353d4c734e0ad" title=" " alt="" coords="259,309,459,336"/>
+<area shape="rect" id="node9" href="$classAnnouncement.html#a60d167c1712f94315eb73487f34c8c2e" title=" " alt="" coords="516,309,743,336"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="Announcement::getValue" name="Announcement::getValue">
+<area shape="rect" id="node1" title=" " alt="" coords="573,122,759,149"/>
+<area shape="rect" id="node2" href="$classAIPlayerSimple.html#a0cb7ab44b578139a12590467bfbf3934" title="Announces a dice value." alt="" coords="297,5,489,47"/>
+<area shape="rect" id="node3" href="$classAIPlayerSimple.html#a390b7eee4e1b2eb625c4daf53b747fd3" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="5,59,213,86"/>
+<area shape="rect" id="node4" href="$classHumanPlayer.html#a55e94676251f94f6a1669f8933dd6aa8" title="Announces a dice value." alt="" coords="285,122,502,149"/>
+<area shape="rect" id="node5" href="$classHumanPlayer.html#a7f015ea67a84295d87171850480697af" title="Performs the player&#39;s turn by shaking the dice cup and making an announcement." alt="" coords="11,135,208,162"/>
+<area shape="rect" id="node6" href="$classAIPlayerSimple.html#a4a132a784a4c619b0c0dc952ba777181" title="Decides whether to trust a given announcement." alt="" coords="261,223,525,250"/>
+</map>
