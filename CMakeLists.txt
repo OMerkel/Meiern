@@ -7,12 +7,12 @@ find_package(Doxygen REQUIRED)
 if(DOXYGEN_FOUND)
     set(DOXYFILE_IN ${CMAKE_SOURCE_DIR}/doc/Doxyfile.in)
     set(DOXYFILE_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
-    set(PROJECT_NAME "meiern")
+    set(PROJECT_NAME "Meiern")
     set(PROJECT_VERSION "1.0.4")
     configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
     add_custom_target(doc
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE_OUT}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM
     )
