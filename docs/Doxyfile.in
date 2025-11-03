@@ -3,11 +3,12 @@
 # Project related settings
 PROJECT_NAME           = @PROJECT_NAME@
 PROJECT_NUMBER         = @PROJECT_VERSION@
+PROJECT_BRIEF          = "A C++ implementation of the classic dice game Meiern."
 OUTPUT_DIRECTORY       = @DOXYGEN_OUTPUT_DIR@
 CREATE_SUBDIRS         = NO
 
 # Input
-INPUT                  = @CMAKE_SOURCE_DIR@/include @CMAKE_SOURCE_DIR@/src
+INPUT                  = @CMAKE_SOURCE_DIR@/include @CMAKE_SOURCE_DIR@/src @CMAKE_SOURCE_DIR@/docs/software_architecture.md
 FILE_PATTERNS          = *.h *.cpp *.c *.hpp
 RECURSIVE              = YES
 EXCLUDE                = @EXCLUDE_PATHS@
@@ -58,3 +59,5 @@ WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 
 # End of Doxyfile.in
+
+USE_MDFILE_AS_MAINPAGE = @CMAKE_SOURCE_DIR@/docs/software_architecture.md

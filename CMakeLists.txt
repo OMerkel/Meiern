@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.14)
 find_package(Doxygen REQUIRED)
 
 if(DOXYGEN_FOUND)
-    set(DOXYFILE_IN ${CMAKE_SOURCE_DIR}/doc/Doxyfile.in)
+    set(DOXYFILE_IN ${CMAKE_SOURCE_DIR}/docs/Doxyfile.in)
     set(DOXYFILE_OUT ${CMAKE_BINARY_DIR}/Doxyfile)
     set(PROJECT_NAME "Meiern")
     set(PROJECT_VERSION "1.0.4")
