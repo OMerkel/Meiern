@@ -156,7 +156,6 @@ As an optional information each relations arrow end might show a multiplicity if
 
 ## Example Game Session
 
-
 1. Create players and assign dice cups:
 
   ```cpp
